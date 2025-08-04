@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mors Team</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/1388702918013751326/1402061017357488188/f93ltpN.PNG?ex=68928a93&is=68913913&hm=ab0a77c13019d41bdd06ba909ec70860430823a2e42c464470c1c452091ab1c6&">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            verifiedBlue: '#3b82f6',
+            infoPurple: '#8b5cf6',
+            successGreen: '#22c55e',
+            neonRed: '#ff0033'
+          },
+          boxShadow: {
+            neonRed: '0 0 15px 6px #ff0033'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glow-text {
+      text-shadow: 0 0 4px rgba(255, 0, 0, 0.3), 0 0 10px rgba(255, 0, 0, 0.2);
+    }
+
+    .dropdown-menu {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .group:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transition-delay: 0.15s;
+    }
+  </style>
+</head>
+<body class="bg-black text-white font-sans">
+  <!-- Top Navbar -->
+  <nav class="flex items-center justify-between px-6 py-4 bg-zinc-900 border-b border-zinc-700 shadow-lg z-10">
+    <!-- Site Name -->
+    <a href="/" class="text-2xl font-bold text-white glow-text">Mors Team</a>
+
+    <!-- Search Bar -->
+    <input
+      type="text"
+      placeholder="Search exploits..."
+      class="bg-zinc-800 text-white px-4 py-2 rounded-md w-1/2 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+      id="searchInput"
+    />
+
+    <!-- Right Side Buttons -->
+    <div class="flex items-center space-x-4">
+      <!-- Games Dropdown (hover with delay) -->
+      <div class="relative group">
+        <button class="flex items-center text-white px-3 py-2 rounded hover:bg-zinc-800 transition-colors duration-150">
+          <span>Games</span>
+          <svg class="w-4 h-4 ml-1 mt-[1px] text-zinc-300 group-hover:text-white transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="absolute dropdown-menu right-0 mt-2 w-40 bg-zinc-800 rounded-md shadow-lg border border-zinc-700 z-50">
+          <a href="/game1" class="block px-4 py-2 hover:bg-zinc-700 transition">Game 1</a>
+          <a href="/game2" class="block px-4 py-2 hover:bg-zinc-700 transition">Game 2</a>
+          <a href="/game3" class="block px-4 py-2 hover:bg-zinc-700 transition">Game 3</a>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="h-6 border-l border-zinc-600"></div>
+
+      <!-- Discord Icon -->
+      <a href="https://dsc.gg/morsteam" target="_blank" class="text-white hover:text-red-500">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
+          <path d="M20.317 4.369a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.211.375-.444.864-.608 1.248a18.4 18.4 0 00-5.494 0 12.22 12.22 0 00-.617-1.248.077.077 0 00-.079-.037 19.736 19.736 0 00-4.885 1.515.07.07 0 00-.033.027C.533 9.193-.319 13.818.099 18.404a.082.082 0 00.031.056 19.99 19.99 0 005.993 3.051.077.077 0 00.084-.027c.462-.63.873-1.295 1.226-1.994a.076.076 0 00-.041-.104 13.14 13.14 0 01-1.872-.885.077.077 0 01-.008-.129c.126-.094.252-.192.373-.291a.077.077 0 01.079-.01c3.927 1.785 8.18 1.785 12.061 0a.077.077 0 01.08.009c.12.099.246.197.372.291a.077.077 0 01-.006.129c-.6.347-1.222.643-1.861.885a.077.077 0 00-.041.104c.36.699.771 1.365 1.226 1.995a.077.077 0 00.084.027 19.941 19.941 0 005.991-3.051.077.077 0 00.031-.056c.5-5.177-.838-9.757-3.548-13.995a.062.062 0 00-.031-.028zM8.02 15.331c-1.182 0-2.156-1.085-2.156-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.175 1.094 2.156 2.419 0 1.333-.955 2.419-2.157 2.419zm7.974 0c-1.182 0-2.156-1.085-2.156-2.419 0-1.333.955-2.419 2.156-2.419 1.21 0 2.175 1.094 2.156 2.419 0 1.333-.946 2.419-2.156 2.419z"/>
+        </svg>
+      </a>
+
+      <!-- Contribute Icon -->
+      <a href="/contribute" class="text-white hover:text-red-500">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
+          <path d="M12 0L15.09 8H24l-6.545 4.75L19.09 24 12 18.5 4.91 24l1.545-11.25L0 8h8.91L12 0z"/>
+        </svg>
+      </a>
+    </div>
+  </nav>
+
+  <div class="flex">
+    <!-- Sidebar Filters -->
+    <aside id="sidebar" class="w-64 p-4 border-r border-zinc-700 bg-zinc-900 min-h-screen">
+      <h2 class="text-xl font-semibold mb-4">Filters</h2>
+      <div class="mb-6">
+        <h3 class="font-bold mb-2">Level (Power): <span id="sliderVal" class="text-red-500 font-bold">4</span></h3>
+        <input id="levelSlider" type="range" min="1" max="8" value="4" class="w-full">
+      </div>
+      <div class="mb-6">
+        <h3 class="font-bold mb-2">Platform</h3>
+        <div><input type="checkbox" class="mr-2" /> Windows</div>
+        <div><input type="checkbox" class="mr-2" /> macOS</div>
+        <div><input type="checkbox" class="mr-2" /> Android</div>
+        <div><input type="checkbox" class="mr-2" /> iOS</div>
+      </div>
+      <div class="mb-6">
+        <h3 class="font-bold mb-2">Price</h3>
+        <div><input type="radio" name="price" class="mr-2" /> All</div>
+        <div><input type="radio" name="price" class="mr-2" /> Free</div>
+        <div><input type="radio" name="price" class="mr-2" /> Paid</div>
+      </div>
+    </aside>
+
+    <!-- Exploits Grid -->
+    <main class="flex-1 p-6 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 auto-rows-min">
+      <!-- Card 1 -->
+<div class="bg-zinc-800 rounded-xl border border-zinc-600 p-4 relative hover:shadow-neonRed transition duration-200 min-h-[300px]" data-modal="modal1">
+  <div class="absolute top-0 left-0 w-full h-1 bg-neonRed rounded-t-xl"></div>
+  <div class="flex items-center justify-between mb-1 mt-1">
+    <h3 class="text-base font-extrabold">lorem ipsum 1</h3>
+    <span class="bg-verifiedBlue text-white text-xs px-2 py-0.5 rounded-full flex items-center gap-1">
+      <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 000-1.414z"/></svg>
+      Verified
+    </span>
+  </div>
+  <p class="text-xs text-gray-400 mb-1">lorem ipsum</p>
+  <p class="text-sm text-white font-bold">Level 1 <span class="text-gray-400 font-normal">| Last edited by Mors Team</span></p>
+
+  <div class="mt-3 mb-1 flex items-center gap-2">
+    <div class="w-3 h-3 rounded-full bg-green-500 flex items-center justify-center text-black text-xs font-bold">+</div>
+    <span class="text-green-400 font-semibold text-sm">Pros</span>
+  </div>
+  <ul class="list-disc list-inside text-xs text-gray-400 space-y-1">
+    <li>lorem ipsum</li>
+    <li>lorem ipsum</li>
+  </ul>
+  <div class="mt-3 mb-1 flex items-center gap-2">
+  <div class="w-3 h-3 rounded-full bg-red-500 flex items-center justify-center text-white text-xs font-bold">–</div>
+  <span class="text-red-400 font-semibold text-sm">Cons</span>
+</div>
+<ul class="list-disc list-inside text-xs text-gray-400 space-y-1">
+  <li>lorem ipsum</li>
+  <li>lorem ipsum</li>
+</ul>
+
+
+  <hr class="my-3 border-zinc-600">
+  <div class="flex flex-col gap-2">
+    <button onclick="document.getElementById('modal1').classList.remove('hidden')" class="bg-infoPurple text-white w-full py-2 rounded flex items-center justify-center gap-1 text-sm font-semibold">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M18 10A8 8 0 11 2 10a8 8 0 0116 0zm-9-1a1 1 0 100-2 1 1 0 000 2zm2 5a1 1 0 10-2 0v-3a1 1 0 102 0v3z"/></svg>
+      Info
+    </button>
+    <button class="bg-zinc-700 text-white w-full py-2 rounded flex items-center justify-center gap-1 text-sm font-semibold">
+      Website
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M12.293 2.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L14 5.414V14a1 1 0 11-2 0V5.414l-2.293 2.293a1 1 0 01-1.414-1.414l4-4z"/></svg>
+    </button>
+  </div>
+</div>
+
+
+      <!-- Card 2 -->
+<div class="bg-zinc-800 rounded-xl border border-zinc-600 p-4 relative hover:shadow-neonRed transition duration-200 min-h-[300px]" data-modal="modal2">
+  <div class="absolute top-0 left-0 w-full h-1 bg-neonRed rounded-t-xl"></div>
+  <div class="flex items-center justify-between mb-1 mt-1">
+    <h3 class="text-base font-extrabold">lorem ipsum 2</h3>
+    <span class="bg-verifiedBlue text-white text-xs px-2 py-0.5 rounded-full flex items-center gap-1">
+      <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 000-1.414z"/></svg>
+      Verified
+    </span>
+  </div>
+  <p class="text-xs text-gray-400 mb-1">lorem ipsum</p>
+  <p class="text-sm text-white font-bold">Level 2 <span class="text-gray-400 font-normal">| Last edited by Mors Team</span></p>
+
+  <div class="mt-3 mb-1 flex items-center gap-2">
+    <div class="w-3 h-3 rounded-full bg-green-500 flex items-center justify-center text-black text-xs font-bold">+</div>
+    <span class="text-green-400 font-semibold text-sm">Pros</span>
+  </div>
+  <ul class="list-disc list-inside text-xs text-gray-400 space-y-1">
+    <li>lorem ipsum</li>
+    <li>lorem ipsum</li>
+  </ul>
+
+  <hr class="my-3 border-zinc-600">
+  <div class="flex flex-col gap-2">
+    <button onclick="document.getElementById('modal2').classList.remove('hidden')" class="bg-infoPurple text-white w-full py-2 rounded flex items-center justify-center gap-1 text-sm font-semibold">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M18 10A8 8 0 11 2 10a8 8 0 0116 0zm-9-1a1 1 0 100-2 1 1 0 000 2zm2 5a1 1 0 10-2 0v-3a1 1 0 102 0v3z"/></svg>
+      Info
+    </button>
+    <button class="bg-zinc-700 text-white w-full py-2 rounded flex items-center justify-center gap-1 text-sm font-semibold">
+      Website
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M12.293 2.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L14 5.414V14a1 1 0 11-2 0V5.414l-2.293 2.293a1 1 0 01-1.414-1.414l4-4z"/></svg>
+    </button>
+  </div>
+</div>
+
+      <!-- Card 3 -->
+<div class="bg-zinc-800 rounded-xl border border-zinc-600 p-4 relative hover:shadow-neonRed transition duration-200 min-h-[300px]" data-modal="modal2">
+  <div class="absolute top-0 left-0 w-full h-1 bg-neonRed rounded-t-xl"></div>
+  <div class="flex items-center justify-between mb-1 mt-1">
+    <h3 class="text-base font-extrabold">lorem ipsum 3</h3>
+    <span class="bg-verifiedBlue text-white text-xs px-2 py-0.5 rounded-full flex items-center gap-1">
+      <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 000-1.414z"/></svg>
+      Verified
+    </span>
+  </div>
+  <p class="text-xs text-gray-400 mb-1">lorem ipsum</p>
+  <p class="text-sm text-white font-bold">Level 3 <span class="text-gray-400 font-normal">| Last edited by Mors Team</span></p>
+
+  <div class="mt-3 mb-1 flex items-center gap-2">
+    <div class="w-3 h-3 rounded-full bg-green-500 flex items-center justify-center text-black text-xs font-bold">+</div>
+    <span class="text-green-400 font-semibold text-sm">Pros</span>
+  </div>
+  <ul class="list-disc list-inside text-xs text-gray-400 space-y-1">
+    <li>lorem ipsum</li>
+    <li>lorem ipsum</li>
+  </ul>
+
+  <hr class="my-3 border-zinc-600">
+  <div class="flex flex-col gap-2">
+    <button onclick="document.getElementById('modal3').classList.remove('hidden')" class="bg-infoPurple text-white w-full py-2 rounded flex items-center justify-center gap-1 text-sm font-semibold">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M18 10A8 8 0 11 2 10a8 8 0 0116 0zm-9-1a1 1 0 100-2 1 1 0 000 2zm2 5a1 1 0 10-2 0v-3a1 1 0 102 0v3z"/></svg>
+      Info
+    </button>
+    <button class="bg-zinc-700 text-white w-full py-2 rounded flex items-center justify-center gap-1 text-sm font-semibold">
+      Website
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M12.293 2.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L14 5.414V14a1 1 0 11-2 0V5.414l-2.293 2.293a1 1 0 01-1.414-1.414l4-4z"/></svg>
+    </button>
+  </div>
+</div>
+
+      <!-- Card 4 -->
+<div class="bg-zinc-800 rounded-xl border border-zinc-600 p-4 relative hover:shadow-neonRed transition duration-200 min-h-[300px]" data-modal="modal2">
+  <div class="absolute top-0 left-0 w-full h-1 bg-neonRed rounded-t-xl"></div>
+  <div class="flex items-center justify-between mb-1 mt-1">
+    <h3 class="text-base font-extrabold">lorem ipsum 4</h3>
+    <span class="bg-verifiedBlue text-white text-xs px-2 py-0.5 rounded-full flex items-center gap-1">
+      <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 000-1.414z"/></svg>
+      Verified
+    </span>
+  </div>
+  <p class="text-xs text-gray-400 mb-1">lorem ipsum</p>
+  <p class="text-sm text-white font-bold">Level 4 <span class="text-gray-400 font-normal">| Last edited by Mors Team</span></p>
+
+  <div class="mt-3 mb-1 flex items-center gap-2">
+    <div class="w-3 h-3 rounded-full bg-green-500 flex items-center justify-center text-black text-xs font-bold">+</div>
+    <span class="text-green-400 font-semibold text-sm">Pros</span>
+  </div>
+  <ul class="list-disc list-inside text-xs text-gray-400 space-y-1">
+    <li>lorem ipsum</li>
+    <li>lorem ipsum</li>
+  </ul>
+
+  <hr class="my-3 border-zinc-600">
+  <div class="flex flex-col gap-2">
+    <button onclick="document.getElementById('modal4').classList.remove('hidden')" class="bg-infoPurple text-white w-full py-2 rounded flex items-center justify-center gap-1 text-sm font-semibold">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M18 10A8 8 0 11 2 10a8 8 0 0116 0zm-9-1a1 1 0 100-2 1 1 0 000 2zm2 5a1 1 0 10-2 0v-3a1 1 0 102 0v3z"/></svg>
+      Info
+    </button>
+    <button class="bg-zinc-700 text-white w-full py-2 rounded flex items-center justify-center gap-1 text-sm font-semibold">
+      Website
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M12.293 2.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L14 5.414V14a1 1 0 11-2 0V5.414l-2.293 2.293a1 1 0 01-1.414-1.414l4-4z"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- Card 5 -->
+<div class="bg-zinc-800 rounded-xl border border-zinc-600 p-4 relative hover:shadow-neonRed transition duration-200 min-h-[300px]" data-modal="modal2">
+  <div class="absolute top-0 left-0 w-full h-1 bg-neonRed rounded-t-xl"></div>
+  <div class="flex items-center justify-between mb-1 mt-1">
+    <h3 class="text-base font-extrabold">lorem ipsum 5</h3>
+    <span class="bg-verifiedBlue text-white text-xs px-2 py-0.5 rounded-full flex items-center gap-1">
+      <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 000-1.414z"/></svg>
+      Verified
+    </span>
+  </div>
+  <p class="text-xs text-gray-400 mb-1">lorem ipsum</p>
+  <p class="text-sm text-white font-bold">Level 5 <span class="text-gray-400 font-normal">| Last edited by Mors Team</span></p>
+
+  <div class="mt-3 mb-1 flex items-center gap-2">
+    <div class="w-3 h-3 rounded-full bg-green-500 flex items-center justify-center text-black text-xs font-bold">+</div>
+    <span class="text-green-400 font-semibold text-sm">Pros</span>
+  </div>
+  <ul class="list-disc list-inside text-xs text-gray-400 space-y-1">
+    <li>lorem ipsum</li>
+    <li>lorem ipsum</li>
+  </ul>
+
+  <hr class="my-3 border-zinc-600">
+  <div class="flex flex-col gap-2">
+    <button onclick="document.getElementById('modal5').classList.remove('hidden')" class="bg-infoPurple text-white w-full py-2 rounded flex items-center justify-center gap-1 text-sm font-semibold">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M18 10A8 8 0 11 2 10a8 8 0 0116 0zm-9-1a1 1 0 100-2 1 1 0 000 2zm2 5a1 1 0 10-2 0v-3a1 1 0 102 0v3z"/></svg>
+      Info
+    </button>
+    <button class="bg-zinc-700 text-white w-full py-2 rounded flex items-center justify-center gap-1 text-sm font-semibold">
+      Website
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M12.293 2.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L14 5.414V14a1 1 0 11-2 0V5.414l-2.293 2.293a1 1 0 01-1.414-1.414l4-4z"/></svg>
+    </button>
+  </div>
+</div>
+<!-- Card 6 -->
+<div class="bg-zinc-800 rounded-xl border border-zinc-600 p-4 relative hover:shadow-neonRed transition duration-200 min-h-[300px]" data-modal="modal2">
+  <div class="absolute top-0 left-0 w-full h-1 bg-neonRed rounded-t-xl"></div>
+  <div class="flex items-center justify-between mb-1 mt-1">
+    <h3 class="text-base font-extrabold">lorem ipsum 6</h3>
+    <span class="bg-verifiedBlue text-white text-xs px-2 py-0.5 rounded-full flex items-center gap-1">
+      <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l7-7a1 1 0 000-1.414z"/></svg>
+      Verified
+    </span>
+  </div>
+  <p class="text-xs text-gray-400 mb-1">lorem ipsum</p>
+  <p class="text-sm text-white font-bold">Level 6 <span class="text-gray-400 font-normal">| Last edited by Mors Team</span></p>
+
+  <div class="mt-3 mb-1 flex items-center gap-2">
+    <div class="w-3 h-3 rounded-full bg-green-500 flex items-center justify-center text-black text-xs font-bold">+</div>
+    <span class="text-green-400 font-semibold text-sm">Pros</span>
+  </div>
+  <ul class="list-disc list-inside text-xs text-gray-400 space-y-1">
+    <li>lorem ipsum</li>
+    <li>lorem ipsum</li>
+  </ul>
+
+  <hr class="my-3 border-zinc-600">
+  <div class="flex flex-col gap-2">
+    <button onclick="document.getElementById('modal6').classList.remove('hidden')" class="bg-infoPurple text-white w-full py-2 rounded flex items-center justify-center gap-1 text-sm font-semibold">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M18 10A8 8 0 11 2 10a8 8 0 0116 0zm-9-1a1 1 0 100-2 1 1 0 000 2zm2 5a1 1 0 10-2 0v-3a1 1 0 102 0v3z"/></svg>
+      Info
+    </button>
+    <button class="bg-zinc-700 text-white w-full py-2 rounded flex items-center justify-center gap-1 text-sm font-semibold">
+      Website
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M12.293 2.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L14 5.414V14a1 1 0 11-2 0V5.414l-2.293 2.293a1 1 0 01-1.414-1.414l4-4z"/></svg>
+    </button>
+  </div>
+</div>
+    </main>
+  </div>
+
+  <!-- Modal 1 -->
+  <div id="modal1" class="modal hidden fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center">
+    <div class="bg-zinc-800 border border-zinc-600 rounded-xl max-w-4xl w-full mx-4 p-6 relative">
+      <button onclick="closeModal('modal1')" class="absolute top-4 right-4 text-red-500 hover:text-red-400">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M6 6l8 8M6 14L14 6"/></svg>
+      </button>
+      <div class="flex justify-between items-center">
+        <h2 class="text-2xl font-bold">lorem ipsum</h2>
+        <button onclick="closeModal('modal1')" class="text-xl text-red-500">❌</button>
+      </div>
+      <p class="text-sm text-gray-300">lorem ipsum</p>
+    </div>
+  </div>
+
+  <!-- Modal 2 -->
+<div id="modal2" class="modal hidden fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center">
+  <div class="bg-zinc-800 border border-zinc-600 rounded-xl max-w-4xl w-full mx-4 p-6 relative">
+    <button onclick="closeModal('modal2')" class="absolute top-4 right-4 text-red-500 hover:text-red-400">
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M6 6l8 8M6 14L14 6"/></svg>
+    </button>
+    <div class="flex justify-between items-center mb-2">
+      <h2 class="text-2xl font-bold">lorem ipsum</h2>
+      <button onclick="closeModal('modal2')" class="text-2xl text-red-500 hover:text-red-400">❌</button>
+    </div>
+    <p class="text-sm text-gray-300">lorem ipsum</p>
+  </div>
+</div>
+
+<!-- Modal 3 -->
+<div id="modal3" class="modal hidden fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center">
+  <div class="bg-zinc-800 border border-zinc-600 rounded-xl max-w-4xl w-full mx-4 p-6 relative">
+    <button onclick="closeModal('modal3')" class="absolute top-4 right-4 text-red-500 hover:text-red-400">
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M6 6l8 8M6 14L14 6"/></svg>
+    </button>
+    <div class="flex justify-between items-center mb-2">
+      <h2 class="text-2xl font-bold">lorem ipsum</h2>
+      <button onclick="closeModal('modal3')" class="text-2xl text-red-500 hover:text-red-400">❌</button>
+    </div>
+    <p class="text-sm text-gray-300">lorem ipsum</p>
+  </div>
+</div>
+
+<!-- Modal 4 -->
+<div id="modal4" class="modal hidden fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center">
+  <div class="bg-zinc-800 border border-zinc-600 rounded-xl max-w-4xl w-full mx-4 p-6 relative">
+    <button onclick="closeModal('modal4')" class="absolute top-4 right-4 text-red-500 hover:text-red-400">
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M6 6l8 8M6 14L14 6"/></svg>
+    </button>
+    <div class="flex justify-between items-center mb-2">
+      <h2 class="text-2xl font-bold">lorem ipsum</h2>
+      <button onclick="closeModal('modal4')" class="text-2xl text-red-500 hover:text-red-400">❌</button>
+    </div>
+    <p class="text-sm text-gray-300">lorem ipsum</p>
+  </div>
+</div>
+
+<!-- Modal 5 -->
+<div id="modal5" class="modal hidden fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center">
+  <div class="bg-zinc-800 border border-zinc-600 rounded-xl max-w-4xl w-full mx-4 p-6 relative">
+    <button onclick="closeModal('modal5')" class="absolute top-4 right-4 text-red-500 hover:text-red-400">
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M6 6l8 8M6 14L14 6"/></svg>
+    </button>
+    <div class="flex justify-between items-center mb-2">
+      <h2 class="text-2xl font-bold">lorem ipsum</h2>
+      <button onclick="closeModal('modal5')" class="text-2xl text-red-500 hover:text-red-400">❌</button>
+    </div>
+    <p class="text-sm text-gray-300">lorem ipsum</p>
+  </div>
+</div>
+
+<!-- Modal 6 -->
+<div id="modal6" class="modal hidden fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center">
+  <div class="bg-zinc-800 border border-zinc-600 rounded-xl max-w-4xl w-full mx-4 p-6 relative">
+    <button onclick="closeModal('modal6')" class="absolute top-4 right-4 text-red-500 hover:text-red-400">
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M6 6l8 8M6 14L14 6"/></svg>
+    </button>
+    <div class="flex justify-between items-center mb-2">
+      <h2 class="text-2xl font-bold">lorem ipsum</h2>
+      <button onclick="closeModal('modal6')" class="text-2xl text-red-500 hover:text-red-400">❌</button>
+    </div>
+    <p class="text-sm text-gray-300">lorem ipsum</p>
+  </div>
+</div>
+
+  <script>
+  const slider = document.getElementById('levelSlider');
+  const sliderVal = document.getElementById('sliderVal');
+  const cards = document.querySelectorAll('[data-modal]');
+  const searchInput = document.querySelector('input[placeholder="Search exploits..."]');
+
+  slider.addEventListener('input', () => {
+    sliderVal.textContent = slider.value;
+    filterCards();
+  });
+
+  searchInput.addEventListener('input', () => {
+    filterCards();
+  });
+
+  function filterCards() {
+    const query = searchInput.value.toLowerCase();
+    const levelFilter = parseInt(slider.value);
+
+    cards.forEach(card => {
+      const title = card.querySelector('h3')?.textContent?.toLowerCase() || '';
+      const levelText = card.querySelector('p.text-sm')?.textContent || '';
+      const levelMatch = parseInt(levelText.match(/Level\s(\d+)/)?.[1] || 0);
+
+      const show = title.includes(query) && levelMatch >= levelFilter;
+      card.style.display = show ? 'block' : 'none';
+    });
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).classList.add('hidden');
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal').forEach(modal => modal.classList.add('hidden'));
+    }
+  });
+</script>
+</body>
+</html>
