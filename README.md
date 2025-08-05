@@ -1,4 +1,4 @@
-# morsteam.lol
+# Mors Team Website
 
 Welcome to the official **Mors Team** website – your home for custom game exploits, cheats, and mod tools across your favorite games like **Minecraft**, **Roblox**, **Fortnite**, **GTA 5**, and **Rust**.
 
@@ -26,5 +26,7 @@ MIT License – See [LICENSE](LICENSE) for full details
 ## 🤝 Support
 
 ⭐ **Star this repo** if you found it cool!
+
 🐛 **Report bugs** via GitHub Issues
+
 💬 **Suggest features** via GitHub Discussions
