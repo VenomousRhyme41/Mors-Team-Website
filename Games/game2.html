@@ -1,1 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mors Team</title>
+    <link rel="icon" type="image/png" href="https://cdn.discordapp.com/icons/1154241764945830019/181efb82c15b43caa460d49cb336305b.png?size=100&amp;quality=lossless">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --text-color: #ffffff;
+            --accent: #3b82f6;
+            --verified: #3b82f6;
+            --version: #eab308;
+            --unverified: #ef4444;
+            --pros: #10b981;
+            --cons: #ef4444;
+            --ad-bg: #363636;
+            --border: #404040;
+        }
 
+        .light-mode {
+            --bg-color: #f5f5f5;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --accent: #2563eb;
+            --verified: #2563eb;
+            --version: #ca8a04;
+            --unverified: #dc2626;
+            --pros: #059669;
+            --cons: #dc2626;
+            --ad-bg: #e5e5e5;
+            --border: #d4d4d4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        img {
+            -webkit-user-drag: none;
+            -moz-user-drag: none;
+            -ms-user-drag: none;
+            user-drag: none;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 250px 1fr 250px;
+            gap: 20px;
+            padding: 15px;
+            width: 100%;
+            flex: 1;
+        }
+
+        header {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .site-name {
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            margin-left: 15px;
+        }
+
+        .search-bar {
+            flex: 0 1 400px;
+            display: flex;
+            margin: 0 auto;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid var(--border);
+            border-radius: 5px 0 0 5px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .search-bar button {
+            padding: 10px 15px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background-color: #2563eb;
+            transform: scale(1.05);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-buttons button {
+            padding: 10px 12px;
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-color);
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-buttons button:hover {
+            background-color: var(--accent);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-color);
+            padding: 10px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--accent);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .filters-section {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 10px;
+            height: fit-content;
+            margin-bottom: 20px;
+        }
+
+        .filters-section h2 {
+            margin-bottom: 20px;
+            font-size: 20px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+            opacity: 0.6;
+        }
+
+        .filter-section {
+            margin-bottom: 25px;
+        }
+
+        .filter-section h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .slider-container {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .slider {
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+        }
+
+        .slider-label {
+            font-size: 12px;
+            color: var(--text-color);
+            opacity: 0.7;
+        }
+
+        .platform-options, .price-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .platform-options label, .price-options label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .platform-options label:hover, .price-options label:hover {
+            background-color: var(--bg-color);
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        select:hover {
+            border-color: var(--accent);
+        }
+
+        .ad-space {
+            background-color: var(--ad-bg);
+            height: 150px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            align-content: start;
+        }
+
+        .card-row {
+            display: contents;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            min-height: 380px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .neon-strip {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff0000, #ff8000, #ffff00, #00ff00, #00ffff, #0000ff, #8000ff, #ff00ff, #ff0000);
+            background-size: 200% 100%;
+            animation: rainbowSlide 8s linear infinite;
+        }
+
+        @keyframes rainbowSlide {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 200% 0%; }
+        }
+
+        .card-content {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .mod-name {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .tag {
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .verified {
+            background-color: var(--verified);
+            color: white;
+        }
+
+        .version {
+            background-color: var(--version);
+            color: black;
+        }
+
+        .unverified {
+            background-color: var(--unverified);
+            color: white;
+        }
+
+        .description {
+            font-size: 13px;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+
+        .level {
+            font-size: 12px;
+            color: var(--text-color);
+            opacity: 0.7;
+            margin-bottom: 12px;
+        }
+
+        .pros-cons {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            flex: 1;
+        }
+
+        .pros, .cons {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .pros i {
+            color: var(--pros);
+            font-size: 12px;
+        }
+
+        .cons i {
+            color: var(--cons);
+            font-size: 12px;
+        }
+
+        .bullet-points {
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: var(--border);
+            opacity: 0.5;
+            margin: 15px 0;
+        }
+
+        .card-footer {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .website-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .website-btn:hover {
+            background-color: #2563eb;
+            transform: scale(1.05);
+        }
+
+        .button-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .discord-btn, .more-btn {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-color);
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .discord-btn:hover {
+            background-color: #5865F2;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .more-btn:hover {
+            background-color: var(--accent);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border);
+        }
+
+        .modal-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .modal-nav-btn {
+            padding: 12px 20px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .modal-nav-btn:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .modal-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border);
+        }
+
+        .modal-section h3 {
+            margin-bottom: 15px;
+            color: var(--accent);
+            font-size: 20px;
+        }
+
+        .modal-section ul {
+            padding-left: 20px;
+        }
+
+        .modal-section li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--cons);
+            transform: scale(1.2);
+        }
+
+        .right-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        footer {
+            background-color: var(--card-bg);
+            padding: 20px;
+            margin-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .copyright {
+            color: var(--text-color);
+            opacity: 0.7;
+            font-size: 14px;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-color);
+            border: 1px solid var(--border);
+            color: var(--text-color);
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn.github:hover {
+            background: #333;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .social-btn.discord:hover {
+            background: #5865F2;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .social-btn.youtube:hover {
+            background: #FF0000;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 1200px) {
+            .container {
+                grid-template-columns: 200px 1fr 200px;
+            }
+            
+            .cards-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .cards-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .filters-section, .right-sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-bar {
+                min-width: 100%;
+            }
+            
+            .nav-buttons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+                gap: 10px;
+            }
+            
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .card {
+                padding: 12px;
+            }
+            
+            .button-row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body oncontextmenu="return false">
+    <div class="container">
+        <header>
+            <div class="site-name">Mors Team</div>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search for mods...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            <div class="nav-buttons">
+                <button>Home</button>
+                <button onclick="window.open('https://dsc.gg/morsteam', '_blank')"><i class="fab fa-discord"></i></button>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <aside>
+            <div class="filters-section">
+                <h2>Filters</h2>
+                <div class="filter-section">
+                    <h3>Level</h3>
+                    <div class="slider-container">
+                        <input type="range" min="1" max="8" value="1" class="slider" id="levelSlider">
+                        <div class="slider-labels">
+                            <span class="slider-label">1</span>
+                            <span class="slider-label">2</span>
+                            <span class="slider-label">3</span>
+                            <span class="slider-label">4</span>
+                            <span class="slider-label">5</span>
+                            <span class="slider-label">6</span>
+                            <span class="slider-label">7</span>
+                            <span class="slider-label">8</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h3>Platform</h3>
+                    <div class="platform-options">
+                        <label><input type="checkbox" checked id="platformAll"> All</label>
+                        <label><input type="checkbox" class="platform" value="windows"> Windows</label>
+                        <label><input type="checkbox" class="platform" value="ios"> iOS</label>
+                        <label><input type="checkbox" class="platform" value="android"> Android</label>
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h3>Price</h3>
+                    <div class="price-options">
+                        <label><input type="radio" name="price" value="all" checked id="priceAll"> All</label>
+                        <label><input type="radio" name="price" value="free"> Free</label>
+                        <label><input type="radio" name="price" value="paid"> Paid</label>
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h3>Sort By</h3>
+                    <select id="sortSelect">
+                        <option value="popular">Most Popular</option>
+                        <option value="level">Level</option>
+                        <option value="name">Name</option>
+                        <option value="newest">Newest</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="ad-space">
+                Advertisement
+            </div>
+        </aside>
+
+        <main class="cards-container" id="cardsContainer">
+            <div class="card-row">
+                <div class="card" data-name="horion" data-level="8" data-platform="windows" data-price="free" data-popular="10">
+                    <div class="neon-strip"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="mod-name">Horion</div>
+                            <div class="tags">
+                                <div class="tag verified"><i class="fas fa-check"></i> Verified</div>
+                                <div class="tag version">1.20.100</div>
+                            </div>
+                        </div>
+                        <div class="description">Powerful Minecraft utility hack client</div>
+                        <div class="level">Level 8 | Last edited by morsteam</div>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <i class="fas fa-plus-circle"></i>
+                                <span>Pros</span>
+                            </div>
+                            <ul class="bullet-points">
+                                <li>Easy to install</li>
+                                <li>Great performance</li>
+                                <li>Regular updates</li>
+                            </ul>
+                            <div class="cons">
+                                <i class="fas fa-minus-circle"></i>
+                                <span>Cons</span>
+                            </div>
+                            <ul class="bullet-points">
+                                <li>Can be buggy</li>
+                                <li>Limited compatibility</li>
+                            </ul>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="card-footer">
+                            <button class="website-btn" onclick="window.open('https://example.com', '_blank')">Visit Website</button>
+                            <div class="button-row">
+                                <button class="discord-btn" onclick="window.open('https://discord.gg/example', '_blank')"><i class="fab fa-discord"></i> Discord</button>
+                                <button class="more-btn" onclick="openModal('horion')">More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-name="cheat2" data-level="5" data-platform="windows" data-price="paid" data-popular="8">
+                    <div class="neon-strip"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="mod-name">Cheat 2</div>
+                            <div class="tags">
+                                <div class="tag unverified"><i class="fas fa-times"></i> Unverified</div>
+                                <div class="tag version">1.20.100</div>
+                            </div>
+                        </div>
+                        <div class="description">Advanced building tools cheat</div>
+                        <div class="level">Level 5 | Last edited by morsteam</div>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <i class="fas fa-plus-circle"></i>
+                                <span>Pros</span>
+                            </div>
+                            <ul class="bullet-points">
+                                <li>Easy to install</li>
+                                <li>Great performance</li>
+                            </ul>
+                            <div class="cons">
+                                <i class="fas fa-minus-circle"></i>
+                                <span>Cons</span>
+                            </div>
+                            <ul class="bullet-points">
+                                <li>Can be buggy</li>
+                                <li>Limited compatibility</li>
+                                <li>Steep learning curve</li>
+                            </ul>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="card-footer">
+                            <button class="website-btn" onclick="window.open('https://example.com', '_blank')">Visit Website</button>
+                            <div class="button-row">
+                                <button class="discord-btn" onclick="window.open('https://discord.gg/example', '_blank')"><i class="fab fa-discord"></i> Discord</button>
+                                <button class="more-btn" onclick="openModal('mod2')">More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-name="cheat3" data-level="8" data-platform="ios" data-price="free" data-popular="9">
+                    <div class="neon-strip"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="mod-name">cheat 3</div>
+                            <div class="tags">
+                                <div class="tag verified"><i class="fas fa-check"></i> Verified</div>
+                                <div class="tag version">1.20.100</div>
+                            </div>
+                        </div>
+                        <div class="description">Texture optimization hack pack</div>
+                        <div class="level">Level 10 | Last edited by morsteam</div>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <i class="fas fa-plus-circle"></i>
+                                <span>Pros</span>
+                            </div>
+                            <ul class="bullet-points">
+                                <li>Easy to install</li>
+                                <li>Great performance</li>
+                                <li>Regular updates</li>
+                            </ul>
+                            <div class="cons">
+                                <i class="fas fa-minus-circle"></i>
+                                <span>Cons</span>
+                            </div>
+                            <ul class="bullet-points">
+                                <li>Can be buggy</li>
+                            </ul>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="card-footer">
+                            <button class="website-btn" onclick="window.open('https://example.com', '_blank')">Visit Website</button>
+                            <div class="button-row">
+                                <button class="discord-btn" onclick="window.open('https://discord.gg/example', '_blank')"><i class="fab fa-discord"></i> Discord</button>
+                                <button class="more-btn" onclick="openModal('mod3')">More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-row">
+                <div class="card" data-name="cheat4" data-level="3" data-platform="android" data-price="free" data-popular="6">
+                    <div class="neon-strip"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="mod-name">Cheat 4</div>
+                            <div class="tags">
+                                <div class="tag unverified"><i class="fas fa-times"></i> Unverified</div>
+                                <div class="tag version">1.20.100</div>
+                            </div>
+                        </div>
+                        <div class="description">Simple quality of life improvements</div>
+                        <div class="level">Level 3 | Last edited by morsteam</div>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <i class="fas fa-plus-circle"></i>
+                                <span>Pros</span>
+                            </div>
+                            <ul class="bullet-points">
+                                <li>Easy to install</li>
+                                <li>Great performance</li>
+                                <li>Regular updates</li>
+                            </ul>
+                            <div class="cons">
+                                <i class="fas fa-minus-circle"></i>
+                                <span>Cons</span>
+                            </div>
+                            <ul class="bullet-points">
+                                <li>Can be buggy</li>
+                                <li>Limited compatibility</li>
+                                <li>Steep learning curve</li>
+                            </ul>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="card-footer">
+                            <button class="website-btn" onclick="window.open('https://example.com', '_blank')">Visit Website</button>
+                            <div class="button-row">
+                                <button class="discord-btn" onclick="window.open('https://discord.gg/example', '_blank')"><i class="fab fa-discord"></i> Discord</button>
+                                <button class="more-btn" onclick="openModal('mod4')">More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-name="cheat5" data-level="7" data-platform="windows" data-price="paid" data-popular="7">
+                    <div class="neon-strip"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="mod-name">Cheat 5</div>
+                            <div class="tags">
+                                <div class="tag verified"><i class="fas fa-check"></i> Verified</div>
+                                <div class="tag version">1.20.100</div>
+                            </div>
+                        </div>
+                        <div class="description">Advanced combat mechanics cheat</div>
+                        <div class="level">Level 7 | Last edited by morsteam</div>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <i class="fas fa-plus-circle"></i>
+                                <span>Pros</span>
+                            </div>
+                            <ul class="bullet-points">
+                                <li>Easy to install</li>
+                            </ul>
+                            <div class="cons">
+                                <i class="fas fa-minus-circle"></i>
+                                <span>Cons</span>
+                            </div>
+                            <ul class="bullet-points">
+                                <li>Can be buggy</li>
+                                <li>Limited compatibility</li>
+                            </ul>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="card-footer">
+                            <button class="website-btn" onclick="window.open('https://example.com', '_blank')">Visit Website</button>
+                            <div class="button-row">
+                                <button class="discord-btn" onclick="window.open('https://discord.gg/example', '_blank')"><i class="fab fa-discord"></i> Discord</button>
+                                <button class="more-btn" onclick="openModal('mod5')">More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-name="cheat6" data-level="8" data-platform="ios" data-price="free" data-popular="5">
+                    <div class="neon-strip"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="mod-name">Cheat 6</div>
+                            <div class="tags">
+                                <div class="tag verified"><i class="fas fa-check"></i> Verified</div>
+                                <div class="tag version">1.20.100</div>
+                            </div>
+                        </div>
+                        <div class="description">World generation enhancement hacks</div>
+                        <div class="level">Level 9 | Last edited by morsteam</div>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <i class="fas fa-plus-circle"></i>
+                                <span>Pros</span>
+                            </div>
+                            <ul class="bullet-points">
+                                <li>Easy to install</li>
+                                <li>Great performance</li>
+                                <li>Regular updates</li>
+                            </ul>
+                            <div class="cons">
+                                <i class="fas fa-minus-circle"></i>
+                                <span>Cons</span>
+                            </div>
+                            <ul class="bullet-points">
+                                <li>Can be buggy</li>
+                                <li>Limited compatibility</li>
+                                <li>Steep learning curve</li>
+                            </ul>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="card-footer">
+                            <button class="website-btn" onclick="window.open('https://example.com', '_blank')">Visit Website</button>
+                            <div class="button-row">
+                                <button class="discord-btn" onclick="window.open('https://discord.gg/example', '_blank')"><i class="fab fa-discord"></i> Discord</button>
+                                <button class="more-btn" onclick="openModal('mod6')">More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="right-sidebar">
+            <div class="ad-space">
+                Advertisement
+            </div>
+            <div class="ad-space">
+                Advertisement
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="copyright">
+                © 2025 Mors Team. All rights reserved.
+            </div>
+            <div class="social-buttons">
+                <button class="social-btn github" onclick="window.open('https://github.com/morsteam', '_blank')">
+                    <i class="fab fa-github"></i>
+                </button>
+                <button class="social-btn discord" onclick="window.open('https://dsc.gg/morsteam', '_blank')">
+                    <i class="fab fa-discord"></i>
+                </button>
+                <button class="social-btn youtube" onclick="window.open('https://youtube.com/morsteam', '_blank')">
+                    <i class="fab fa-youtube"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">&times;</button>
+            <h2 id="modalTitle">Cheat Details</h2>
+            
+            <div class="modal-nav">
+                <button class="modal-nav-btn" onclick="scrollToSection('features')">Features</button>
+                <button class="modal-nav-btn" onclick="scrollToSection('models')">Models</button>
+                <button class="modal-nav-btn" onclick="scrollToSection('commands')">Commands</button>
+            </div>
+            
+            <div class="modal-section" id="features">
+                <h3>Features</h3>
+                <p>Advanced gameplay enhancements and utilities that improve your Minecraft experience with powerful tools and automation.</p>
+                <ul>
+                    <li>Real-time inventory management</li>
+                    <li>Auto-mining and farming</li>
+                    <li>Enhanced movement capabilities</li>
+                    <li>Customizable user interface</li>
+                    <li>Multiplayer compatibility</li>
+                </ul>
+            </div>
+            
+            <div class="modal-section" id="models">
+                <h3>Models</h3>
+                <p>High-quality 3D models and textures that transform your Minecraft world with enhanced visuals and custom assets.</p>
+                <ul>
+                    <li>HD texture packs included</li>
+                    <li>Custom entity models</li>
+                    <li>Animated block textures</li>
+                    <li>Particle effect enhancements</li>
+                    <li>Shader compatibility</li>
+                </ul>
+            </div>
+            
+            <div class="modal-section" id="commands">
+                <h3>Commands</h3>
+                <p>Comprehensive command system with extensive customization options for advanced users and server administrators.</p>
+                <ul>
+                    <li>.give - Spawn any item</li>
+                    <li>.teleport - Instant travel</li>
+                    <li>.time - Control day/night cycle</li>
+                    <li>.weather - Modify weather conditions</li>
+                    <li>.enchant - Apply custom enchantments</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const levelSlider = document.getElementById('levelSlider');
+        const sortSelect = document.getElementById('sortSelect');
+        const searchInput = document.getElementById('searchInput');
+        const platformAll = document.getElementById('platformAll');
+        const priceAll = document.getElementById('priceAll');
+        const cardsContainer = document.getElementById('cardsContainer');
+        const modal = document.getElementById('modal');
+        const modalTitle = document.getElementById('modalTitle');
+        
+        // Popularity scores for consistent sorting
+        const popularityScores = {
+            'horion': 10,
+            'mod2': 8,
+            'mod3': 9,
+            'mod4': 6,
+            'mod5': 7,
+            'mod6': 5
+        };
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.addEventListener('copy', function(e) {
+                e.preventDefault();
+                return false;
+            });
+            
+            document.body.addEventListener('cut', function(e) {
+                e.preventDefault();
+                return false;
+            });
+            
+            document.body.addEventListener('paste', function(e) {
+                e.preventDefault();
+                return false;
+            });
+            
+            document.body.addEventListener('dragstart', function(e) {
+                e.preventDefault();
+                return false;
+            });
+            
+            equalizeCardHeights();
+            filterCards();
+        });
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            
+            if (document.body.classList.contains('light-mode')) {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        });
+
+        levelSlider.addEventListener('input', filterCards);
+
+        sortSelect.addEventListener('change', sortCards);
+
+        searchInput.addEventListener('input', filterCards);
+
+        document.querySelectorAll('.platform').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    platformAll.checked = false;
+                }
+                filterCards();
+            });
+        });
+
+        platformAll.addEventListener('change', function() {
+            if (this.checked) {
+                document.querySelectorAll('.platform').forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+            }
+            filterCards();
+        });
+
+        document.querySelectorAll('input[name="price"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value !== 'all') {
+                    priceAll.checked = false;
+                }
+                filterCards();
+            });
+        });
+
+        priceAll.addEventListener('change', function() {
+            if (this.checked) {
+                document.querySelectorAll('input[name="price"]').forEach(radio => {
+                    if (radio.value === 'all') return;
+                    radio.checked = false;
+                });
+            }
+            filterCards();
+        });
+
+        function equalizeCardHeights() {
+            const rows = document.querySelectorAll('.card-row');
+            rows.forEach(row => {
+                const cards = Array.from(row.children);
+                let maxHeight = 0;
+                
+                cards.forEach(card => {
+                    card.style.height = 'auto';
+                    const height = card.offsetHeight;
+                    if (height > maxHeight) maxHeight = height;
+                });
+                
+                cards.forEach(card => {
+                    card.style.height = maxHeight + 'px';
+                });
+            });
+        }
+
+        function filterCards() {
+            const level = parseInt(levelSlider.value);
+            const searchTerm = searchInput.value.toLowerCase();
+            const platformChecked = document.querySelector('.platform:checked');
+            const selectedPlatform = platformChecked ? platformChecked.value : null;
+            const priceChecked = document.querySelector('input[name="price"]:checked');
+            const selectedPrice = priceChecked ? priceChecked.value : null;
+            const cards = document.querySelectorAll('.card');
+            
+            cards.forEach(card => {
+                const cardLevel = parseInt(card.getAttribute('data-level'));
+                const cardName = card.getAttribute('data-name').toLowerCase();
+                const cardPlatform = card.getAttribute('data-platform');
+                const cardPrice = card.getAttribute('data-price');
+                
+                let shouldShow = cardLevel >= level && cardName.startsWith(searchTerm);
+                
+                if (selectedPlatform && selectedPlatform !== 'all') {
+                    shouldShow = shouldShow && cardPlatform === selectedPlatform;
+                }
+                
+                if (selectedPrice && selectedPrice !== 'all') {
+                    shouldShow = shouldShow && cardPrice === selectedPrice;
+                }
+                
+                card.style.display = shouldShow ? 'flex' : 'none';
+            });
+            
+            sortCards();
+            setTimeout(equalizeCardHeights, 10);
+        }
+
+        function sortCards() {
+            const sortBy = sortSelect.value;
+            const cards = Array.from(document.querySelectorAll('.card'));
+            const container = document.getElementById('cardsContainer');
+            
+            cards.sort((a, b) => {
+                if (sortBy === 'name') {
+                    return a.getAttribute('data-name').localeCompare(b.getAttribute('data-name'));
+                } else if (sortBy === 'level') {
+                    return parseInt(b.getAttribute('data-level')) - parseInt(a.getAttribute('data-level'));
+                } else if (sortBy === 'popular') {
+                    const aPopular = parseInt(a.getAttribute('data-popular'));
+                    const bPopular = parseInt(b.getAttribute('data-popular'));
+                    return bPopular - aPopular;
+                } else {
+                    return Math.random() - 0.5;
+                }
+            });
+            
+            cards.forEach(card => {
+                if (card.style.display !== 'none') {
+                    container.appendChild(card);
+                }
+            });
+            
+            equalizeCardHeights();
+        }
+
+        function openModal(modName) {
+            const mods = {
+                'horion': 'Horion',
+                'mod2': 'Mod 2',
+                'mod3': 'Mod 3',
+                'mod4': 'Mod 4',
+                'mod5': 'Mod 5',
+                'mod6': 'Mod 6'
+            };
+            
+            if (mods[modName]) {
+                modalTitle.textContent = mods[modName] + ' - Detailed Information';
+                modal.style.display = 'flex';
+            }
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            document.body.style.width = '100%';
+            equalizeCardHeights();
+        });
+    </script>
+</body>
+</html>
