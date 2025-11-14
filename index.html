@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mors Team</title>
-    <link rel="icon" type="image/png" href="https://cdn.discordapp.com/icons/1154241764945830019/181efb82c15b43caa460d49cb336305b.png?size=100&amp;quality=lossless">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="https://cdn.discordapp.com/icons/1154241764945830019/181efb82c15b43caa460d49cb336305b.png?size=100&amp;quality=lossless">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6486450723881054" crossorigin="anonymous"></script>
     <style>
         :root {
@@ -20,6 +20,7 @@
             --cons: #ef4444;
             --ad-bg: #363636;
             --border: #404040;
+            --filter-bg: #2a2a2a;
         }
 
         .light-mode {
@@ -34,6 +35,7 @@
             --cons: #dc2626;
             --ad-bg: #e5e5e5;
             --border: #d4d4d4;
+            --filter-bg: #e8e8e8;
         }
 
         * {
@@ -70,79 +72,76 @@
 
         .container {
             display: grid;
-            grid-template-columns: 250px 1fr 250px;
+            grid-template-columns: 280px 1fr 280px;
             gap: 20px;
             padding: 15px;
             width: 100%;
             flex: 1;
+            margin-top: 70px;
         }
 
         header {
-            grid-column: 1 / -1;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 0;
+            padding: 12px 20px;
             border-bottom: 1px solid var(--border);
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 10px;
+            background-color: var(--bg-color);
+            z-index: 1000;
+            height: 70px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .site-name {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-            margin-left: 15px;
+            margin-left: 10px;
         }
 
         .search-bar {
-            flex: 0 1 400px;
+            flex: 0 1 450px;
             display: flex;
             margin: 0 auto;
         }
 
         .search-bar input {
             width: 100%;
-            padding: 10px 15px;
-            border: 1px solid var(--border);
-            border-radius: 5px 0 0 5px;
+            padding: 12px 20px;
+            border: 2px solid var(--border);
+            border-radius: 25px;
             background-color: var(--card-bg);
             color: var(--text-color);
+            font-size: 16px;
         }
 
         .search-bar button {
-            padding: 10px 15px;
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .search-bar button:hover {
-            background-color: #2563eb;
-            transform: scale(1.05);
+            display: none;
         }
 
         .nav-buttons {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
         .nav-buttons button {
-            padding: 10px 12px;
+            padding: 12px 20px;
             background: none;
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             color: var(--text-color);
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             display: flex;
             align-items: center;
             gap: 8px;
             transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 600;
         }
 
         .nav-buttons button:hover {
@@ -153,15 +152,17 @@
 
         .theme-toggle {
             background: none;
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             color: var(--text-color);
-            padding: 10px 12px;
-            border-radius: 5px;
+            padding: 12px 20px;
+            border-radius: 8px;
             cursor: pointer;
             display: flex;
             align-items: center;
             gap: 8px;
             transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 600;
         }
 
         .theme-toggle:hover {
@@ -170,96 +171,235 @@
             transform: scale(1.05);
         }
 
-        .filters-section {
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-search {
+            display: none;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--bg-color);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mobile-search input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid var(--border);
+            border-radius: 25px;
             background-color: var(--card-bg);
+            color: var(--text-color);
+            font-size: 16px;
+        }
+
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
             padding: 20px;
-            border-radius: 10px;
+            background-color: var(--bg-color);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mobile-nav button {
+            padding: 15px 20px;
+            background: none;
+            border: 2px solid var(--border);
+            color: var(--text-color);
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 600;
+            justify-content: center;
+        }
+
+        .mobile-nav button:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .filters-section {
+            background-color: var(--filter-bg);
+            padding: 20px;
+            border-radius: 15px;
             height: fit-content;
             margin-bottom: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .filters-section h2 {
             margin-bottom: 20px;
-            font-size: 20px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 10px;
-            opacity: 0.6;
+            font-size: 22px;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 12px;
+            color: var(--text-color);
+            text-align: center;
+            font-weight: 700;
         }
 
         .filter-section {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .filter-section h3 {
-            margin-bottom: 10px;
-            font-size: 18px;
+            margin-bottom: 12px;
+            font-size: 16px;
+            color: var(--text-color);
+            font-weight: 600;
         }
 
         .slider-container {
             position: relative;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .slider {
             width: 100%;
             margin: 10px 0;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--border);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+            border: 2px solid var(--bg-color);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
         }
 
         .slider-labels {
             display: flex;
             justify-content: space-between;
-            margin-top: 5px;
+            margin-top: 8px;
         }
 
         .slider-label {
             font-size: 12px;
             color: var(--text-color);
-            opacity: 0.7;
+            opacity: 0.8;
+            font-weight: 500;
         }
 
-        .platform-options, .price-options {
+        .filter-buttons {
             display: flex;
             flex-direction: column;
             gap: 8px;
         }
 
-        .platform-options label, .price-options label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            padding: 5px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .platform-options label:hover, .price-options label:hover {
-            background-color: var(--bg-color);
-        }
-
-        select {
-            width: 100%;
-            padding: 8px;
-            border-radius: 5px;
-            background-color: var(--bg-color);
+        .filter-btn {
+            padding: 12px 16px;
+            background: var(--bg-color);
+            border: 2px solid var(--border);
             color: var(--text-color);
-            border: 1px solid var(--border);
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        select:hover {
+        .filter-btn:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .filter-btn.active {
+            background: var(--accent);
+            color: white;
             border-color: var(--accent);
         }
 
-        .ad-space {
-            background-color: var(--ad-bg);
-            height: 150px;
+        .filter-btn i {
+            font-size: 14px;
+        }
+
+        .custom-select {
+            position: relative;
+            width: 100%;
+        }
+
+        .custom-select select {
+            width: 100%;
+            padding: 12px 16px;
             border-radius: 10px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            border: 2px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        .custom-select::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-color);
+            pointer-events: none;
+        }
+
+        .custom-select select:hover {
+            border-color: var(--accent);
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+        }
+
+        .custom-select select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .ad-space {
+            background: var(--ad-bg);
+            height: 180px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            border: 2px solid var(--border);
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .ad-space:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         .cards-container {
@@ -275,14 +415,16 @@
 
         .card {
             background-color: var(--card-bg);
-            border-radius: 10px;
-            padding: 15px;
+            border-radius: 12px;
+            padding: 18px;
             display: flex;
             flex-direction: column;
-            min-height: 380px;
+            min-height: 420px;
             width: 100%;
             position: relative;
             overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .neon-strip {
@@ -312,11 +454,11 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .mod-name {
-            font-size: 18px;
+            font-size: 22px;
             font-weight: bold;
         }
 
@@ -330,7 +472,7 @@
         .tag {
             padding: 4px 10px;
             border-radius: 15px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: bold;
             white-space: nowrap;
         }
@@ -351,49 +493,51 @@
         }
 
         .description {
-            font-size: 13px;
+            font-size: 14px;
             color: var(--text-color);
             opacity: 0.8;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .level {
-            font-size: 12px;
+            font-size: 13px;
             color: var(--text-color);
             opacity: 0.7;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
         .pros-cons {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 8px;
             flex: 1;
         }
 
         .pros, .cons {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
 
         .pros i {
             color: var(--pros);
-            font-size: 12px;
+            font-size: 16px;
+            filter: brightness(0.8);
         }
 
         .cons i {
             color: var(--cons);
-            font-size: 12px;
+            font-size: 16px;
+            filter: brightness(0.8);
         }
 
         .bullet-points {
-            padding-left: 20px;
+            padding-left: 24px;
             display: flex;
             flex-direction: column;
-            gap: 3px;
-            font-size: 12px;
-            margin-bottom: 5px;
+            gap: 4px;
+            font-size: 13px;
+            margin-bottom: 8px;
         }
 
         .divider {
@@ -406,25 +550,25 @@
         .card-footer {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
             margin-top: auto;
         }
 
         .website-btn {
-            background-color: var(--accent);
+            background: linear-gradient(135deg, var(--accent), #1d4ed8);
             color: white;
             border: none;
-            padding: 12px;
-            border-radius: 5px;
+            padding: 14px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
+            font-size: 15px;
+            font-weight: 600;
             transition: all 0.3s ease;
         }
 
         .website-btn:hover {
-            background-color: #2563eb;
-            transform: scale(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
         }
 
         .button-row {
@@ -434,31 +578,34 @@
         }
 
         .discord-btn, .more-btn {
-            background: none;
-            border: 1px solid var(--border);
+            background: var(--bg-color);
+            border: 2px solid var(--border);
             color: var(--text-color);
-            padding: 10px 15px;
-            border-radius: 5px;
+            padding: 12px 16px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             flex: 1;
             justify-content: center;
             transition: all 0.3s ease;
+            font-weight: 500;
         }
 
         .discord-btn:hover {
-            background-color: #5865F2;
+            background: #5865F2;
             color: white;
-            transform: scale(1.05);
+            border-color: #5865F2;
+            transform: translateY(-2px);
         }
 
         .more-btn:hover {
-            background-color: var(--accent);
+            background: var(--accent);
             color: white;
-            transform: scale(1.05);
+            border-color: var(--accent);
+            transform: translateY(-2px);
         }
 
         .modal {
@@ -477,94 +624,52 @@
 
         .modal-content {
             background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
-            max-width: 700px;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 600px;
             width: 90%;
             max-height: 80vh;
             overflow-y: auto;
             position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--border);
-        }
-
-        .modal-nav {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .modal-nav-btn {
-            padding: 12px 20px;
-            background: var(--bg-color);
-            color: var(--text-color);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .modal-nav-btn:hover {
-            background: var(--accent);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .modal-section {
-            margin-bottom: 30px;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: var(--bg-color);
-            border: 1px solid var(--border);
-        }
-
-        .modal-section h3 {
-            margin-bottom: 15px;
-            color: var(--accent);
-            font-size: 20px;
-        }
-
-        .modal-section ul {
-            padding-left: 20px;
-        }
-
-        .modal-section li {
-            margin-bottom: 8px;
-            line-height: 1.5;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--accent);
         }
 
         .close-modal {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 20px;
+            right: 20px;
             background: none;
             border: none;
             color: var(--text-color);
-            font-size: 24px;
+            font-size: 28px;
             cursor: pointer;
             transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .close-modal:hover {
-            color: var(--cons);
-            transform: scale(1.2);
+            background: var(--cons);
+            color: white;
+            transform: scale(1.1);
         }
 
         .right-sidebar {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
         }
 
         footer {
-            background-color: var(--card-bg);
+            background: var(--card-bg);
             padding: 20px;
-            margin-top: 20px;
-            border-top: 1px solid var(--border);
+            margin-top: 30px;
+            border-top: 2px solid var(--border);
         }
 
         .footer-content {
@@ -578,26 +683,27 @@
 
         .copyright {
             color: var(--text-color);
-            opacity: 0.7;
+            opacity: 0.8;
             font-size: 14px;
+            text-align: center;
         }
 
         .social-buttons {
             display: flex;
-            gap: 15px;
+            gap: 20px;
         }
 
         .social-btn {
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             background: var(--bg-color);
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             color: var(--text-color);
-            font-size: 20px;
+            font-size: 22px;
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -605,24 +711,27 @@
         .social-btn.github:hover {
             background: #333;
             color: white;
-            transform: scale(1.1);
+            border-color: #333;
+            transform: scale(1.1) rotate(5deg);
         }
 
         .social-btn.discord:hover {
             background: #5865F2;
             color: white;
-            transform: scale(1.1);
+            border-color: #5865F2;
+            transform: scale(1.1) rotate(5deg);
         }
 
         .social-btn.youtube:hover {
             background: #FF0000;
             color: white;
-            transform: scale(1.1);
+            border-color: #FF0000;
+            transform: scale(1.1) rotate(5deg);
         }
 
         @media (max-width: 1200px) {
             .container {
-                grid-template-columns: 200px 1fr 200px;
+                grid-template-columns: 250px 1fr 250px;
             }
             
             .cards-container {
@@ -633,14 +742,75 @@
         @media (max-width: 992px) {
             .container {
                 grid-template-columns: 1fr;
+                grid-template-areas: 
+                    "mobile-search"
+                    "mobile-nav"
+                    "cards"
+                    "filters"
+                    "ads";
+                margin-top: 60px;
             }
             
             .cards-container {
+                grid-area: cards;
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .filters-section, .right-sidebar {
+            .filters-section {
+                grid-area: filters;
                 display: none;
+                margin: 20px 0;
+            }
+            
+            .right-sidebar {
+                grid-area: ads;
+                display: none;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .right-sidebar .ad-space {
+                flex: 1;
+                min-width: 250px;
+            }
+            
+            .mobile-search {
+                grid-area: mobile-search;
+                display: none;
+            }
+            
+            .mobile-nav {
+                grid-area: mobile-nav;
+                display: none;
+            }
+            
+            header .search-bar,
+            header .nav-buttons {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            header {
+                justify-content: space-between;
+                padding: 10px 15px;
+                height: 60px;
+            }
+            
+            .site-name {
+                font-size: 24px;
+                margin-left: 0;
+                text-align: center;
+                flex: 1;
+            }
+            
+            .mobile-search.active,
+            .mobile-nav.active,
+            .filters-section.active,
+            .right-sidebar.active {
+                display: flex;
             }
         }
 
@@ -649,60 +819,75 @@
                 grid-template-columns: 1fr;
             }
             
-            header {
+            .container {
+                padding: 10px;
+                gap: 15px;
+            }
+            
+            .right-sidebar {
                 flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .search-bar {
-                min-width: 100%;
-            }
-            
-            .nav-buttons {
-                justify-content: center;
             }
         }
 
         @media (max-width: 480px) {
             .container {
-                padding: 10px;
+                padding: 8px;
                 gap: 10px;
             }
             
-            .cards-container {
-                grid-template-columns: 1fr;
-            }
-            
             .card {
-                padding: 12px;
+                padding: 15px;
             }
             
             .button-row {
                 flex-direction: column;
             }
+            
+            .mod-name {
+                font-size: 20px;
+            }
+            
+            .filters-section {
+                padding: 15px;
+            }
         }
     </style>
 </head>
 <body oncontextmenu="return false">
-    <div class="container">
-        <header>
-            <div class="site-name">Mors Team</div>
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Search for mods...">
-                <button><i class="fas fa-search"></i></button>
-            </div>
-            <div class="nav-buttons">
-                <button onclick="window.open('/index2.html', '_blank')">Home</button>
-                <button onclick="window.open('https://dsc.gg/morsteam', '_blank')"><i class="fab fa-discord"></i></button>
-                <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </div>
-        </header>
+    <header>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="site-name">Mors Team</div>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search for mods...">
+        </div>
+        <div class="nav-buttons">
+            <button>Home</button>
+            <button onclick="window.open('https://discord.gg/morsteam', '_blank')"><i class="fab fa-discord"></i></button>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
 
+    <div class="mobile-search" id="mobileSearch">
+        <input type="text" id="mobileSearchInput" placeholder="Search for mods...">
+    </div>
+
+    <div class="mobile-nav" id="mobileNav">
+        <button>Home</button>
+        <button onclick="window.open('https://discord.gg/morsteam', '_blank')"><i class="fab fa-discord"></i> Discord</button>
+        <button class="theme-toggle" id="mobileThemeToggle">
+            <i class="fas fa-moon"></i> Dark Mode
+        </button>
+    </div>
+
+    <div class="container">
         <aside>
-            <div class="filters-section">
+            <div class="filters-section" id="filtersSection">
                 <h2>Filters</h2>
+                
                 <div class="filter-section">
                     <h3>Level</h3>
                     <div class="slider-container">
@@ -722,31 +907,57 @@
                 
                 <div class="filter-section">
                     <h3>Platform</h3>
-                    <div class="platform-options">
-                        <label><input type="checkbox" checked id="platformAll"> All</label>
-                        <label><input type="checkbox" class="platform" value="windows"> Windows</label>
-                        <label><input type="checkbox" class="platform" value="ios"> iOS</label>
-                        <label><input type="checkbox" class="platform" value="android"> Android</label>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="platform-all">
+                            <i class="fas fa-globe"></i> All Platforms
+                        </button>
+                        <button class="filter-btn" data-filter="platform-windows">
+                            <i class="fab fa-windows"></i> Windows
+                        </button>
+                        <button class="filter-btn" data-filter="platform-ios">
+                            <i class="fab fa-apple"></i> iOS
+                        </button>
+                        <button class="filter-btn" data-filter="platform-android">
+                            <i class="fab fa-android"></i> Android
+                        </button>
                     </div>
                 </div>
                 
                 <div class="filter-section">
                     <h3>Price</h3>
-                    <div class="price-options">
-                        <label><input type="radio" name="price" value="all" checked id="priceAll"> All</label>
-                        <label><input type="radio" name="price" value="free"> Free</label>
-                        <label><input type="radio" name="price" value="paid"> Paid</label>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="price-all">
+                            <i class="fas fa-coins"></i> All Prices
+                        </button>
+                        <button class="filter-btn" data-filter="price-free">
+                            <i class="fas fa-gift"></i> Free
+                        </button>
+                        <button class="filter-btn" data-filter="price-paid">
+                            <i class="fas fa-tag"></i> Paid
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h3>Version</h3>
+                    <div class="custom-select">
+                        <select id="versionSelect">
+                            <option value="all">All Versions</option>
+                            <option value="1.20.100">1.20.100</option>
+                        </select>
                     </div>
                 </div>
                 
                 <div class="filter-section">
                     <h3>Sort By</h3>
-                    <select id="sortSelect">
-                        <option value="popular">Most Popular</option>
-                        <option value="level">Level</option>
-                        <option value="name">Name</option>
-                        <option value="newest">Newest</option>
-                    </select>
+                    <div class="custom-select">
+                        <select id="sortSelect">
+                            <option value="popular">Most Popular</option>
+                            <option value="level">Level</option>
+                            <option value="name">Name</option>
+                            <option value="newest">Newest</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             
@@ -756,8 +967,9 @@
         </aside>
 
         <main class="cards-container" id="cardsContainer">
+            <!-- First Row -->
             <div class="card-row">
-                <div class="card" data-name="horion" data-level="8" data-platform="windows" data-price="free" data-popular="10">
+                <div class="card" data-name="horion" data-level="8" data-platform="windows" data-price="free" data-popular="10" data-version="1.20.100">
                     <div class="neon-strip"></div>
                     <div class="card-content">
                         <div class="card-header">
@@ -767,7 +979,7 @@
                                 <div class="tag version">1.20.100</div>
                             </div>
                         </div>
-                        <div class="description">Powerful Minecraft utility hack client</div>
+                        <div class="description">Powerful Minecraft utility mod client</div>
                         <div class="level">Level 8 | Last edited by morsteam</div>
                         <div class="pros-cons">
                             <div class="pros">
@@ -799,17 +1011,17 @@
                     </div>
                 </div>
 
-                <div class="card" data-name="cheat2" data-level="5" data-platform="windows" data-price="paid" data-popular="8">
+                <div class="card" data-name="mod2" data-level="5" data-platform="windows" data-price="paid" data-popular="8" data-version="1.20.100">
                     <div class="neon-strip"></div>
                     <div class="card-content">
                         <div class="card-header">
-                            <div class="mod-name">Cheat 2</div>
+                            <div class="mod-name">Mod 2</div>
                             <div class="tags">
                                 <div class="tag unverified"><i class="fas fa-times"></i> Unverified</div>
                                 <div class="tag version">1.20.100</div>
                             </div>
                         </div>
-                        <div class="description">Advanced building tools cheat</div>
+                        <div class="description">Advanced building tools mod</div>
                         <div class="level">Level 5 | Last edited by morsteam</div>
                         <div class="pros-cons">
                             <div class="pros">
@@ -841,17 +1053,17 @@
                     </div>
                 </div>
 
-                <div class="card" data-name="cheat3" data-level="8" data-platform="ios" data-price="free" data-popular="9">
+                <div class="card" data-name="mod3" data-level="10" data-platform="ios" data-price="free" data-popular="9" data-version="1.20.100">
                     <div class="neon-strip"></div>
                     <div class="card-content">
                         <div class="card-header">
-                            <div class="mod-name">cheat 3</div>
+                            <div class="mod-name">Mod 3</div>
                             <div class="tags">
                                 <div class="tag verified"><i class="fas fa-check"></i> Verified</div>
                                 <div class="tag version">1.20.100</div>
                             </div>
                         </div>
-                        <div class="description">Texture optimization hack pack</div>
+                        <div class="description">Texture optimization mod pack</div>
                         <div class="level">Level 10 | Last edited by morsteam</div>
                         <div class="pros-cons">
                             <div class="pros">
@@ -883,12 +1095,13 @@
                 </div>
             </div>
 
+            <!-- Second Row -->
             <div class="card-row">
-                <div class="card" data-name="cheat4" data-level="3" data-platform="android" data-price="free" data-popular="6">
+                <div class="card" data-name="mod4" data-level="3" data-platform="android" data-price="free" data-popular="6" data-version="1.20.100">
                     <div class="neon-strip"></div>
                     <div class="card-content">
                         <div class="card-header">
-                            <div class="mod-name">Cheat 4</div>
+                            <div class="mod-name">Mod 4</div>
                             <div class="tags">
                                 <div class="tag unverified"><i class="fas fa-times"></i> Unverified</div>
                                 <div class="tag version">1.20.100</div>
@@ -927,17 +1140,17 @@
                     </div>
                 </div>
 
-                <div class="card" data-name="cheat5" data-level="7" data-platform="windows" data-price="paid" data-popular="7">
+                <div class="card" data-name="mod5" data-level="7" data-platform="windows" data-price="paid" data-popular="7" data-version="1.20.100">
                     <div class="neon-strip"></div>
                     <div class="card-content">
                         <div class="card-header">
-                            <div class="mod-name">Cheat 5</div>
+                            <div class="mod-name">Mod 5</div>
                             <div class="tags">
                                 <div class="tag verified"><i class="fas fa-check"></i> Verified</div>
                                 <div class="tag version">1.20.100</div>
                             </div>
                         </div>
-                        <div class="description">Advanced combat mechanics cheat</div>
+                        <div class="description">Advanced combat mechanics mod</div>
                         <div class="level">Level 7 | Last edited by morsteam</div>
                         <div class="pros-cons">
                             <div class="pros">
@@ -967,17 +1180,17 @@
                     </div>
                 </div>
 
-                <div class="card" data-name="cheat6" data-level="8" data-platform="ios" data-price="free" data-popular="5">
+                <div class="card" data-name="mod6" data-level="9" data-platform="ios" data-price="free" data-popular="5" data-version="1.20.100">
                     <div class="neon-strip"></div>
                     <div class="card-content">
                         <div class="card-header">
-                            <div class="mod-name">Cheat 6</div>
+                            <div class="mod-name">Mod 6</div>
                             <div class="tags">
                                 <div class="tag verified"><i class="fas fa-check"></i> Verified</div>
                                 <div class="tag version">1.20.100</div>
                             </div>
                         </div>
-                        <div class="description">World generation enhancement hacks</div>
+                        <div class="description">World generation enhancement mod</div>
                         <div class="level">Level 9 | Last edited by morsteam</div>
                         <div class="pros-cons">
                             <div class="pros">
@@ -1010,9 +1223,144 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Third Row -->
+            <div class="card-row">
+                <div class="card" data-name="mod7" data-level="4" data-platform="windows" data-price="free" data-popular="4" data-version="1.20.100">
+                    <div class="neon-strip"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="mod-name">Mod 7</div>
+                            <div class="tags">
+                                <div class="tag unverified"><i class="fas fa-times"></i> Unverified</div>
+                                <div class="tag version">1.20.100</div>
+                            </div>
+                        </div>
+                        <div class="description">Performance optimization mod</div>
+                        <div class="level">Level 4 | Last edited by morsteam</div>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <i class="fas fa-plus-circle"></i>
+                                <span>Pros</span>
+                            </div>
+                            <ul class="bullet-points">
+                                <li>Easy to install</li>
+                                <li>Great performance</li>
+                                <li>Regular updates</li>
+                            </ul>
+                            <div class="cons">
+                                <i class="fas fa-minus-circle"></i>
+                                <span>Cons</span>
+                            </div>
+                            <ul class="bullet-points">
+                                <li>Can be buggy</li>
+                                <li>Limited compatibility</li>
+                            </ul>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="card-footer">
+                            <button class="website-btn" onclick="window.open('https://example.com', '_blank')">Visit Website</button>
+                            <div class="button-row">
+                                <button class="discord-btn" onclick="window.open('https://discord.gg/example', '_blank')"><i class="fab fa-discord"></i> Discord</button>
+                                <button class="more-btn" onclick="openModal('mod7')">More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-name="mod8" data-level="6" data-platform="android" data-price="paid" data-popular="6" data-version="1.20.100">
+                    <div class="neon-strip"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="mod-name">Mod 8</div>
+                            <div class="tags">
+                                <div class="tag verified"><i class="fas fa-check"></i> Verified</div>
+                                <div class="tag version">1.20.100</div>
+                            </div>
+                        </div>
+                        <div class="description">Multiplayer enhancement mod</div>
+                        <div class="level">Level 6 | Last edited by morsteam</div>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <i class="fas fa-plus-circle"></i>
+                                <span>Pros</span>
+                            </div>
+                            <ul class="bullet-points">
+                                <li>Easy to install</li>
+                                <li>Great performance</li>
+                            </ul>
+                            <div class="cons">
+                                <i class="fas fa-minus-circle"></i>
+                                <span>Cons</span>
+                            </div>
+                            <ul class="bullet-points">
+                                <li>Can be buggy</li>
+                                <li>Limited compatibility</li>
+                                <li>Steep learning curve</li>
+                            </ul>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="card-footer">
+                            <button class="website-btn" onclick="window.open('https://example.com', '_blank')">Visit Website</button>
+                            <div class="button-row">
+                                <button class="discord-btn" onclick="window.open('https://discord.gg/example', '_blank')"><i class="fab fa-discord"></i> Discord</button>
+                                <button class="more-btn" onclick="openModal('mod8')">More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" data-name="mod9" data-level="2" data-platform="ios" data-price="free" data-popular="3" data-version="1.20.100">
+                    <div class="neon-strip"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="mod-name">Mod 9</div>
+                            <div class="tags">
+                                <div class="tag verified"><i class="fas fa-check"></i> Verified</div>
+                                <div class="tag version">1.20.100</div>
+                            </div>
+                        </div>
+                        <div class="description">UI customization mod</div>
+                        <div class="level">Level 2 | Last edited by morsteam</div>
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <i class="fas fa-plus-circle"></i>
+                                <span>Pros</span>
+                            </div>
+                            <ul class="bullet-points">
+                                <li>Easy to install</li>
+                                <li>Great performance</li>
+                                <li>Regular updates</li>
+                            </ul>
+                            <div class="cons">
+                                <i class="fas fa-minus-circle"></i>
+                                <span>Cons</span>
+                            </div>
+                            <ul class="bullet-points">
+                                <li>Can be buggy</li>
+                                <li>Limited compatibility</li>
+                            </ul>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="card-footer">
+                            <button class="website-btn" onclick="window.open('https://example.com', '_blank')">Visit Website</button>
+                            <div class="button-row">
+                                <button class="discord-btn" onclick="window.open('https://discord.gg/example', '_blank')"><i class="fab fa-discord"></i> Discord</button>
+                                <button class="more-btn" onclick="openModal('mod9')">More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
 
-        <aside class="right-sidebar">
+        <aside class="right-sidebar" id="rightSidebar">
+            <div class="ad-space">
+                Advertisement
+            </div>
+            <div class="ad-space">
+                Advertisement
+            </div>
             <div class="ad-space">
                 Advertisement
             </div>
@@ -1025,13 +1373,13 @@
     <footer>
         <div class="footer-content">
             <div class="copyright">
-                © 2025 Mors Team. All rights reserved.
+                © 2024 Mors Team. All rights reserved.
             </div>
             <div class="social-buttons">
                 <button class="social-btn github" onclick="window.open('https://github.com/morsteam', '_blank')">
                     <i class="fab fa-github"></i>
                 </button>
-                <button class="social-btn discord" onclick="window.open('https://dsc.gg/morsteam', '_blank')">
+                <button class="social-btn discord" onclick="window.open('https://discord.gg/morsteam', '_blank')">
                     <i class="fab fa-discord"></i>
                 </button>
                 <button class="social-btn youtube" onclick="window.open('https://youtube.com/morsteam', '_blank')">
@@ -1044,71 +1392,36 @@
     <div class="modal" id="modal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModal()">&times;</button>
-            <h2 id="modalTitle">Cheat Details</h2>
-            
-            <div class="modal-nav">
-                <button class="modal-nav-btn" onclick="scrollToSection('features')">Features</button>
-                <button class="modal-nav-btn" onclick="scrollToSection('models')">Models</button>
-                <button class="modal-nav-btn" onclick="scrollToSection('commands')">Commands</button>
-            </div>
-            
-            <div class="modal-section" id="features">
-                <h3>Features</h3>
-                <p>Advanced gameplay enhancements and utilities that improve your Minecraft experience with powerful tools and automation.</p>
-                <ul>
-                    <li>Real-time inventory management</li>
-                    <li>Auto-mining and farming</li>
-                    <li>Enhanced movement capabilities</li>
-                    <li>Customizable user interface</li>
-                    <li>Multiplayer compatibility</li>
-                </ul>
-            </div>
-            
-            <div class="modal-section" id="models">
-                <h3>Models</h3>
-                <p>High-quality 3D models and textures that transform your Minecraft world with enhanced visuals and custom assets.</p>
-                <ul>
-                    <li>HD texture packs included</li>
-                    <li>Custom entity models</li>
-                    <li>Animated block textures</li>
-                    <li>Particle effect enhancements</li>
-                    <li>Shader compatibility</li>
-                </ul>
-            </div>
-            
-            <div class="modal-section" id="commands">
-                <h3>Commands</h3>
-                <p>Comprehensive command system with extensive customization options for advanced users and server administrators.</p>
-                <ul>
-                    <li>.give - Spawn any item</li>
-                    <li>.teleport - Instant travel</li>
-                    <li>.time - Control day/night cycle</li>
-                    <li>.weather - Modify weather conditions</li>
-                    <li>.enchant - Apply custom enchantments</li>
-                </ul>
+            <h2 style="text-align: center; margin-bottom: 20px; color: var(--accent);">Mod Details</h2>
+            <div style="text-align: center; padding: 40px 20px; color: var(--text-color); opacity: 0.8;">
+                <i class="fas fa-cogs" style="font-size: 48px; margin-bottom: 20px; color: var(--accent);"></i>
+                <p style="font-size: 18px; line-height: 1.6;">Detailed information about this mod will be available soon.</p>
             </div>
         </div>
     </div>
 
     <script>
         const themeToggle = document.getElementById('themeToggle');
+        const mobileThemeToggle = document.getElementById('mobileThemeToggle');
         const levelSlider = document.getElementById('levelSlider');
         const sortSelect = document.getElementById('sortSelect');
+        const versionSelect = document.getElementById('versionSelect');
         const searchInput = document.getElementById('searchInput');
-        const platformAll = document.getElementById('platformAll');
-        const priceAll = document.getElementById('priceAll');
+        const mobileSearchInput = document.getElementById('mobileSearchInput');
         const cardsContainer = document.getElementById('cardsContainer');
         const modal = document.getElementById('modal');
-        const modalTitle = document.getElementById('modalTitle');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileSearch = document.getElementById('mobileSearch');
+        const mobileNav = document.getElementById('mobileNav');
+        const filtersSection = document.getElementById('filtersSection');
+        const rightSidebar = document.getElementById('rightSidebar');
+        const filterBtns = document.querySelectorAll('.filter-btn');
         
-        // Popularity scores for consistent sorting
-        const popularityScores = {
-            'horion': 10,
-            'mod2': 8,
-            'mod3': 9,
-            'mod4': 6,
-            'mod5': 7,
-            'mod6': 5
+        let mobileMenuOpen = false;
+        let currentFilters = {
+            platform: 'all',
+            price: 'all',
+            version: 'all'
         };
         
         document.addEventListener('DOMContentLoaded', function() {
@@ -1117,90 +1430,78 @@
                 return false;
             });
             
-            document.body.addEventListener('cut', function(e) {
-                e.preventDefault();
-                return false;
-            });
-            
-            document.body.addEventListener('paste', function(e) {
-                e.preventDefault();
-                return false;
-            });
-            
-            document.body.addEventListener('dragstart', function(e) {
-                e.preventDefault();
-                return false;
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const filterType = this.dataset.filter.split('-')[0];
+                    const filterValue = this.dataset.filter.split('-')[1];
+                    
+                    this.parentElement.querySelectorAll('.filter-btn').forEach(b => {
+                        b.classList.remove('active');
+                    });
+                    
+                    this.classList.add('active');
+                    currentFilters[filterType] = filterValue;
+                    filterCards();
+                });
             });
             
             equalizeCardHeights();
             filterCards();
         });
         
-        themeToggle.addEventListener('click', () => {
+        function openModal(modName) {
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+        mobileThemeToggle.addEventListener('click', toggleTheme);
+
+        function toggleTheme() {
             document.body.classList.toggle('light-mode');
-            
             if (document.body.classList.contains('light-mode')) {
                 themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                mobileThemeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
             } else {
                 themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                mobileThemeToggle.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenuOpen = !mobileMenuOpen;
+            if (mobileMenuOpen) {
+                mobileSearch.classList.add('active');
+                mobileNav.classList.add('active');
+                filtersSection.classList.add('active');
+                rightSidebar.classList.add('active');
+            } else {
+                mobileSearch.classList.remove('active');
+                mobileNav.classList.remove('active');
+                filtersSection.classList.remove('active');
+                rightSidebar.classList.remove('active');
             }
         });
 
         levelSlider.addEventListener('input', filterCards);
-
         sortSelect.addEventListener('change', sortCards);
-
+        versionSelect.addEventListener('change', filterCards);
         searchInput.addEventListener('input', filterCards);
-
-        document.querySelectorAll('.platform').forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                if (this.checked) {
-                    platformAll.checked = false;
-                }
-                filterCards();
-            });
-        });
-
-        platformAll.addEventListener('change', function() {
-            if (this.checked) {
-                document.querySelectorAll('.platform').forEach(checkbox => {
-                    checkbox.checked = false;
-                });
-            }
-            filterCards();
-        });
-
-        document.querySelectorAll('input[name="price"]').forEach(radio => {
-            radio.addEventListener('change', function() {
-                if (this.value !== 'all') {
-                    priceAll.checked = false;
-                }
-                filterCards();
-            });
-        });
-
-        priceAll.addEventListener('change', function() {
-            if (this.checked) {
-                document.querySelectorAll('input[name="price"]').forEach(radio => {
-                    if (radio.value === 'all') return;
-                    radio.checked = false;
-                });
-            }
-            filterCards();
-        });
+        mobileSearchInput.addEventListener('input', filterCards);
 
         function equalizeCardHeights() {
             const rows = document.querySelectorAll('.card-row');
             rows.forEach(row => {
                 const cards = Array.from(row.children);
                 let maxHeight = 0;
-                
                 cards.forEach(card => {
                     card.style.height = 'auto';
                     const height = card.offsetHeight;
                     if (height > maxHeight) maxHeight = height;
                 });
-                
                 cards.forEach(card => {
                     card.style.height = maxHeight + 'px';
                 });
@@ -1209,11 +1510,8 @@
 
         function filterCards() {
             const level = parseInt(levelSlider.value);
-            const searchTerm = searchInput.value.toLowerCase();
-            const platformChecked = document.querySelector('.platform:checked');
-            const selectedPlatform = platformChecked ? platformChecked.value : null;
-            const priceChecked = document.querySelector('input[name="price"]:checked');
-            const selectedPrice = priceChecked ? priceChecked.value : null;
+            const searchTerm = searchInput.value.toLowerCase() || mobileSearchInput.value.toLowerCase();
+            const selectedVersion = versionSelect.value;
             const cards = document.querySelectorAll('.card');
             
             cards.forEach(card => {
@@ -1221,15 +1519,20 @@
                 const cardName = card.getAttribute('data-name').toLowerCase();
                 const cardPlatform = card.getAttribute('data-platform');
                 const cardPrice = card.getAttribute('data-price');
+                const cardVersion = card.getAttribute('data-version');
                 
-                let shouldShow = cardLevel >= level && cardName.startsWith(searchTerm);
+                let shouldShow = cardLevel >= level && cardName.includes(searchTerm);
                 
-                if (selectedPlatform && selectedPlatform !== 'all') {
-                    shouldShow = shouldShow && cardPlatform === selectedPlatform;
+                if (currentFilters.platform !== 'all') {
+                    shouldShow = shouldShow && cardPlatform === currentFilters.platform;
                 }
                 
-                if (selectedPrice && selectedPrice !== 'all') {
-                    shouldShow = shouldShow && cardPrice === selectedPrice;
+                if (currentFilters.price !== 'all') {
+                    shouldShow = shouldShow && cardPrice === currentFilters.price;
+                }
+                
+                if (selectedVersion !== 'all') {
+                    shouldShow = shouldShow && cardVersion === selectedVersion;
                 }
                 
                 card.style.display = shouldShow ? 'flex' : 'none';
@@ -1267,33 +1570,6 @@
             equalizeCardHeights();
         }
 
-        function openModal(modName) {
-            const mods = {
-                'horion': 'Horion',
-                'mod2': 'Mod 2',
-                'mod3': 'Mod 3',
-                'mod4': 'Mod 4',
-                'mod5': 'Mod 5',
-                'mod6': 'Mod 6'
-            };
-            
-            if (mods[modName]) {
-                modalTitle.textContent = mods[modName] + ' - Detailed Information';
-                modal.style.display = 'flex';
-            }
-        }
-
-        function closeModal() {
-            modal.style.display = 'none';
-        }
-
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
         window.addEventListener('click', (event) => {
             if (event.target === modal) {
                 closeModal();
@@ -1303,6 +1579,13 @@
         window.addEventListener('resize', () => {
             document.body.style.width = '100%';
             equalizeCardHeights();
+            if (window.innerWidth > 992 && mobileMenuOpen) {
+                mobileMenuOpen = false;
+                mobileSearch.classList.remove('active');
+                mobileNav.classList.remove('active');
+                filtersSection.classList.remove('active');
+                rightSidebar.classList.remove('active');
+            }
         });
     </script>
 </body>
