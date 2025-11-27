@@ -21,6 +21,9 @@
             --ad-bg: #363636;
             --border: #404040;
             --filter-bg: #2a2a2a;
+            --slider-track: #404040;
+            --slider-thumb: #3b82f6;
+            --slider-thumb-border: #1a1a1a;
         }
 
         .light-mode {
@@ -36,6 +39,9 @@
             --ad-bg: #e5e5e5;
             --border: #d4d4d4;
             --filter-bg: #e8e8e8;
+            --slider-track: #d4d4d4;
+            --slider-thumb: #2563eb;
+            --slider-thumb-border: #ffffff;
         }
 
         * {
@@ -268,23 +274,46 @@
         .slider {
             width: 100%;
             margin: 10px 0;
-            height: 6px;
-            border-radius: 3px;
-            background: var(--border);
+            height: 8px;
+            border-radius: 4px;
+            background: var(--slider-track);
             outline: none;
             -webkit-appearance: none;
+            transition: all 0.3s ease;
         }
 
         .slider::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
-            background: var(--accent);
+            background: var(--slider-thumb);
             cursor: pointer;
-            border: 2px solid var(--bg-color);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            border: 3px solid var(--slider-thumb-border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .slider::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--slider-thumb);
+            cursor: pointer;
+            border: 3px solid var(--slider-thumb-border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .slider::-moz-range-thumb:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
         }
 
         .slider-labels {
@@ -444,7 +473,7 @@
         }
 
         .card-content {
-            margin-top: 10px;
+            margin-top: 8px;
             display: flex;
             flex-direction: column;
             flex: 1;
@@ -454,7 +483,7 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .mod-name {
@@ -496,20 +525,20 @@
             font-size: 14px;
             color: var(--text-color);
             opacity: 0.8;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .level {
             font-size: 13px;
             color: var(--text-color);
             opacity: 0.7;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .pros-cons {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
             flex: 1;
         }
 
@@ -535,16 +564,16 @@
             padding-left: 24px;
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 2px;
             font-size: 13px;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .divider {
             height: 1px;
             background-color: var(--border);
             opacity: 0.5;
-            margin: 15px 0;
+            margin: 12px 0;
         }
 
         .card-footer {
@@ -670,6 +699,7 @@
             padding: 20px;
             margin-top: 30px;
             border-top: 2px solid var(--border);
+            position: relative;
         }
 
         .footer-content {
@@ -686,6 +716,30 @@
             opacity: 0.8;
             font-size: 14px;
             text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--accent);
+        }
+
+        .footer-links a.underlined {
+            text-decoration: underline;
         }
 
         .social-buttons {
@@ -727,6 +781,125 @@
             color: white;
             border-color: #FF0000;
             transform: scale(1.1) rotate(5deg);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+
+        .pagination button {
+            padding: 10px 16px;
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            color: var(--text-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .pagination button:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .pagination button.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .pagination button:disabled:hover {
+            background: var(--card-bg);
+            color: var(--text-color);
+            border-color: var(--border);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .modal-slider {
+            width: 100%;
+            margin: 10px 0;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--slider-track);
+            outline: none;
+            -webkit-appearance: none;
+            transition: all 0.3s ease;
+        }
+
+        .modal-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--slider-thumb);
+            cursor: pointer;
+            border: 3px solid var(--slider-thumb-border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .modal-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        .modal-slider::-moz-range-thumb {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--slider-thumb);
+            cursor: pointer;
+            border: 3px solid var(--slider-thumb-border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .modal-slider::-moz-range-thumb:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
         }
 
         @media (max-width: 1200px) {
@@ -812,6 +985,13 @@
             .right-sidebar.active {
                 display: flex;
             }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -826,6 +1006,10 @@
             
             .right-sidebar {
                 flex-direction: column;
+            }
+
+            .footer-links {
+                gap: 15px;
             }
         }
 
@@ -850,6 +1034,20 @@
             .filters-section {
                 padding: 15px;
             }
+
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .back-to-top {
+                bottom: 15px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
         }
     </style>
 </head>
@@ -864,7 +1062,7 @@
         </div>
         <div class="nav-buttons">
             <button onclick="window.open('/index2', '_blank')">Home</button>
-            <button onclick="window.open('https://discord.gg/morsteam', '_blank')"><i class="fab fa-discord"></i></button>
+            <button onclick="window.open('https://dsc.gg/morsteam', '_blank')"><i class="fab fa-discord"></i></button>
             <button class="theme-toggle" id="themeToggle">
                 <i class="fas fa-moon"></i>
             </button>
@@ -877,7 +1075,7 @@
 
     <div class="mobile-nav" id="mobileNav">
         <button>Home</button>
-        <button onclick="window.open('https://discord.gg/morsteam', '_blank')"><i class="fab fa-discord"></i> Discord</button>
+        <button onclick="window.open('https://dsc.gg/morsteam', '_blank')"><i class="fab fa-discord"></i> Discord</button>
         <button class="theme-toggle" id="mobileThemeToggle">
             <i class="fas fa-moon"></i> Dark Mode
         </button>
@@ -943,7 +1141,6 @@
                     <div class="custom-select">
                         <select id="versionSelect">
                             <option value="all">All Versions</option>
-                            <option value="1.20.100">1.20.100</option>
                         </select>
                     </div>
                 </div>
@@ -966,391 +1163,15 @@
             </div>
         </aside>
 
-        <main class="cards-container" id="cardsContainer">
-            <!-- First Row -->
-            <div class="card-row">
-                <div class="card" data-name="horion" data-level="8" data-platform="windows" data-price="free" data-popular="10" data-version="1.20.100">
-                    <div class="neon-strip"></div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <div class="mod-name">Horion</div>
-                            <div class="tags">
-                                <div class="tag verified"><i class="fas fa-check"></i> Verified</div>
-                                <div class="tag version">1.20.100</div>
-                            </div>
-                        </div>
-                        <div class="description">Powerful Minecraft utility mod client</div>
-                        <div class="level">Level 8 | Last edited by morsteam</div>
-                        <div class="pros-cons">
-                            <div class="pros">
-                                <i class="fas fa-plus-circle"></i>
-                                <span>Pros</span>
-                            </div>
-                            <ul class="bullet-points">
-                                <li>Most Popular Client</li>
-                                <li>Lots of Configs</li>
-                                <li>Frequent updates</li>
-                            </ul>
-                            <div class="cons">
-                                <i class="fas fa-minus-circle"></i>
-                                <span>Cons</span>
-                            </div>
-                            <ul class="bullet-points">
-                                <li>Antivirus False Positives</li>
-                                <li>Anticheat detection</li>
-                            </ul>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="card-footer">
-                            <button class="website-btn" onclick="window.open('https://horion.download/', '_blank')">Visit Website</button>
-                            <div class="button-row">
-                                <button class="discord-btn" onclick="window.open('https://discord.gg/horion', '_blank')"><i class="fab fa-discord"></i> Discord</button>
-                                <button class="more-btn" onclick="openModal('horion')">More</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" data-name="mod2" data-level="5" data-platform="windows" data-price="paid" data-popular="8" data-version="1.20.100">
-                    <div class="neon-strip"></div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <div class="mod-name">Mod 2</div>
-                            <div class="tags">
-                                <div class="tag unverified"><i class="fas fa-times"></i> Unverified</div>
-                                <div class="tag version">1.20.100</div>
-                            </div>
-                        </div>
-                        <div class="description">Advanced building tools mod</div>
-                        <div class="level">Level 5 | Last edited by morsteam</div>
-                        <div class="pros-cons">
-                            <div class="pros">
-                                <i class="fas fa-plus-circle"></i>
-                                <span>Pros</span>
-                            </div>
-                            <ul class="bullet-points">
-                                <li>Easy to install</li>
-                                <li>Great performance</li>
-                            </ul>
-                            <div class="cons">
-                                <i class="fas fa-minus-circle"></i>
-                                <span>Cons</span>
-                            </div>
-                            <ul class="bullet-points">
-                                <li>Can be buggy</li>
-                                <li>Limited compatibility</li>
-                                <li>Steep learning curve</li>
-                            </ul>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="card-footer">
-                            <button class="website-btn" onclick="window.open('https://example.com', '_blank')">Visit Website</button>
-                            <div class="button-row">
-                                <button class="discord-btn" onclick="window.open('https://discord.gg/example', '_blank')"><i class="fab fa-discord"></i> Discord</button>
-                                <button class="more-btn" onclick="openModal('mod2')">More</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" data-name="mod3" data-level="8" data-platform="ios" data-price="free" data-popular="9" data-version="1.20.100">
-                    <div class="neon-strip"></div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <div class="mod-name">Mod 3</div>
-                            <div class="tags">
-                                <div class="tag verified"><i class="fas fa-check"></i> Verified</div>
-                                <div class="tag version">1.20.100</div>
-                            </div>
-                        </div>
-                        <div class="description">Texture optimization mod pack</div>
-                        <div class="level">Level 8 | Last edited by morsteam</div>
-                        <div class="pros-cons">
-                            <div class="pros">
-                                <i class="fas fa-plus-circle"></i>
-                                <span>Pros</span>
-                            </div>
-                            <ul class="bullet-points">
-                                <li>Easy to install</li>
-                                <li>Great performance</li>
-                                <li>Regular updates</li>
-                            </ul>
-                            <div class="cons">
-                                <i class="fas fa-minus-circle"></i>
-                                <span>Cons</span>
-                            </div>
-                            <ul class="bullet-points">
-                                <li>Can be buggy</li>
-                            </ul>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="card-footer">
-                            <button class="website-btn" onclick="window.open('https://example.com', '_blank')">Visit Website</button>
-                            <div class="button-row">
-                                <button class="discord-btn" onclick="window.open('https://discord.gg/example', '_blank')"><i class="fab fa-discord"></i> Discord</button>
-                                <button class="more-btn" onclick="openModal('mod3')">More</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <main>
+            <div class="cards-container" id="cardsContainer">
             </div>
-
-            <!-- Second Row -->
-            <div class="card-row">
-                <div class="card" data-name="mod4" data-level="3" data-platform="android" data-price="free" data-popular="6" data-version="1.20.100">
-                    <div class="neon-strip"></div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <div class="mod-name">Mod 4</div>
-                            <div class="tags">
-                                <div class="tag unverified"><i class="fas fa-times"></i> Unverified</div>
-                                <div class="tag version">1.20.100</div>
-                            </div>
-                        </div>
-                        <div class="description">Simple quality of life improvements</div>
-                        <div class="level">Level 3 | Last edited by morsteam</div>
-                        <div class="pros-cons">
-                            <div class="pros">
-                                <i class="fas fa-plus-circle"></i>
-                                <span>Pros</span>
-                            </div>
-                            <ul class="bullet-points">
-                                <li>Easy to install</li>
-                                <li>Great performance</li>
-                            </ul>
-                            <div class="cons">
-                                <i class="fas fa-minus-circle"></i>
-                                <span>Cons</span>
-                            </div>
-                            <ul class="bullet-points">
-                                <li>Can be buggy</li>
-                                <li>Limited compatibility</li>
-                                <li>Limited compatibility</li>
-                            </ul>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="card-footer">
-                            <button class="website-btn" onclick="window.open('https://example.com', '_blank')">Visit Website</button>
-                            <div class="button-row">
-                                <button class="discord-btn" onclick="window.open('https://discord.gg/example', '_blank')"><i class="fab fa-discord"></i> Discord</button>
-                                <button class="more-btn" onclick="openModal('mod4')">More</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" data-name="mod5" data-level="7" data-platform="windows" data-price="paid" data-popular="7" data-version="1.20.100">
-                    <div class="neon-strip"></div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <div class="mod-name">Mod 5</div>
-                            <div class="tags">
-                                <div class="tag verified"><i class="fas fa-check"></i> Verified</div>
-                                <div class="tag version">1.20.100</div>
-                            </div>
-                        </div>
-                        <div class="description">Advanced combat mechanics mod</div>
-                        <div class="level">Level 7 | Last edited by morsteam</div>
-                        <div class="pros-cons">
-                            <div class="pros">
-                                <i class="fas fa-plus-circle"></i>
-                                <span>Pros</span>
-                            </div>
-                            <ul class="bullet-points">
-                                <li>Easy to install</li>
-                                <li>Limited compatibility</li>
-                            </ul>
-                            <div class="cons">
-                                <i class="fas fa-minus-circle"></i>
-                                <span>Cons</span>
-                            </div>
-                            <ul class="bullet-points">
-                                <li>Can be buggy</li>
-                                <li>Limited compatibility</li>
-                                <li>Limited compatibility</li>
-                            </ul>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="card-footer">
-                            <button class="website-btn" onclick="window.open('https://example.com', '_blank')">Visit Website</button>
-                            <div class="button-row">
-                                <button class="discord-btn" onclick="window.open('https://discord.gg/example', '_blank')"><i class="fab fa-discord"></i> Discord</button>
-                                <button class="more-btn" onclick="openModal('mod5')">More</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" data-name="mod6" data-level="8" data-platform="ios" data-price="free" data-popular="5" data-version="1.20.100">
-                    <div class="neon-strip"></div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <div class="mod-name">Mod 6</div>
-                            <div class="tags">
-                                <div class="tag verified"><i class="fas fa-check"></i> Verified</div>
-                                <div class="tag version">1.20.100</div>
-                            </div>
-                        </div>
-                        <div class="description">World generation enhancement mod</div>
-                        <div class="level">Level 8 | Last edited by morsteam</div>
-                        <div class="pros-cons">
-                            <div class="pros">
-                                <i class="fas fa-plus-circle"></i>
-                                <span>Pros</span>
-                            </div>
-                            <ul class="bullet-points">
-                                <li>Easy to install</li>
-                                <li>Limited compatibility</li>
-                            </ul>
-                            <div class="cons">
-                                <i class="fas fa-minus-circle"></i>
-                                <span>Cons</span>
-                            </div>
-                            <ul class="bullet-points">
-                                <li>Can be buggy</li>
-                                <li>Limited compatibility</li>
-                                <li>Steep learning curve</li>
-                            </ul>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="card-footer">
-                            <button class="website-btn" onclick="window.open('https://example.com', '_blank')">Visit Website</button>
-                            <div class="button-row">
-                                <button class="discord-btn" onclick="window.open('https://discord.gg/example', '_blank')"><i class="fab fa-discord"></i> Discord</button>
-                                <button class="more-btn" onclick="openModal('mod6')">More</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Third Row -->
-            <div class="card-row">
-                <div class="card" data-name="mod7" data-level="4" data-platform="windows" data-price="free" data-popular="4" data-version="1.20.100">
-                    <div class="neon-strip"></div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <div class="mod-name">Mod 7</div>
-                            <div class="tags">
-                                <div class="tag unverified"><i class="fas fa-times"></i> Unverified</div>
-                                <div class="tag version">1.20.100</div>
-                            </div>
-                        </div>
-                        <div class="description">Performance optimization mod</div>
-                        <div class="level">Level 4 | Last edited by morsteam</div>
-                        <div class="pros-cons">
-                            <div class="pros">
-                                <i class="fas fa-plus-circle"></i>
-                                <span>Pros</span>
-                            </div>
-                            <ul class="bullet-points">
-                                <li>Easy to install</li>
-                                <li>Great performance</li>
-                                <li>Regular updates</li>
-                            </ul>
-                            <div class="cons">
-                                <i class="fas fa-minus-circle"></i>
-                                <span>Cons</span>
-                            </div>
-                            <ul class="bullet-points">
-                                <li>Can be buggy</li>
-                                <li>Limited compatibility</li>
-                            </ul>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="card-footer">
-                            <button class="website-btn" onclick="window.open('https://example.com', '_blank')">Visit Website</button>
-                            <div class="button-row">
-                                <button class="discord-btn" onclick="window.open('https://discord.gg/example', '_blank')"><i class="fab fa-discord"></i> Discord</button>
-                                <button class="more-btn" onclick="openModal('mod7')">More</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" data-name="mod8" data-level="6" data-platform="android" data-price="paid" data-popular="6" data-version="1.20.100">
-                    <div class="neon-strip"></div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <div class="mod-name">Mod 8</div>
-                            <div class="tags">
-                                <div class="tag verified"><i class="fas fa-check"></i> Verified</div>
-                                <div class="tag version">1.20.100</div>
-                            </div>
-                        </div>
-                        <div class="description">Multiplayer enhancement mod</div>
-                        <div class="level">Level 6 | Last edited by morsteam</div>
-                        <div class="pros-cons">
-                            <div class="pros">
-                                <i class="fas fa-plus-circle"></i>
-                                <span>Pros</span>
-                            </div>
-                            <ul class="bullet-points">
-                                <li>Easy to install</li>
-                                <li>Great performance</li>
-                            </ul>
-                            <div class="cons">
-                                <i class="fas fa-minus-circle"></i>
-                                <span>Cons</span>
-                            </div>
-                            <ul class="bullet-points">
-                                <li>Can be buggy</li>
-                                <li>Limited compatibility</li>
-                                <li>Steep learning curve</li>
-                            </ul>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="card-footer">
-                            <button class="website-btn" onclick="window.open('https://example.com', '_blank')">Visit Website</button>
-                            <div class="button-row">
-                                <button class="discord-btn" onclick="window.open('https://discord.gg/example', '_blank')"><i class="fab fa-discord"></i> Discord</button>
-                                <button class="more-btn" onclick="openModal('mod8')">More</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" data-name="mod9" data-level="2" data-platform="ios" data-price="free" data-popular="3" data-version="1.20.100">
-                    <div class="neon-strip"></div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <div class="mod-name">Mod 9</div>
-                            <div class="tags">
-                                <div class="tag verified"><i class="fas fa-check"></i> Verified</div>
-                                <div class="tag version">1.20.100</div>
-                            </div>
-                        </div>
-                        <div class="description">UI customization mod</div>
-                        <div class="level">Level 2 | Last edited by morsteam</div>
-                        <div class="pros-cons">
-                            <div class="pros">
-                                <i class="fas fa-plus-circle"></i>
-                                <span>Pros</span>
-                            </div>
-                            <ul class="bullet-points">
-                                <li>Easy to install</li>
-                                <li>Great performance</li>
-                                <li>Regular updates</li>
-                            </ul>
-                            <div class="cons">
-                                <i class="fas fa-minus-circle"></i>
-                                <span>Cons</span>
-                            </div>
-                            <ul class="bullet-points">
-                                <li>Can be buggy</li>
-                                <li>Limited compatibility</li>
-                            </ul>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="card-footer">
-                            <button class="website-btn" onclick="window.open('https://example.com', '_blank')">Visit Website</button>
-                            <div class="button-row">
-                                <button class="discord-btn" onclick="window.open('https://discord.gg/example', '_blank')"><i class="fab fa-discord"></i> Discord</button>
-                                <button class="more-btn" onclick="openModal('mod9')">More</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            
+            <div class="pagination" id="pagination">
+                <button id="prevPage" disabled><i class="fas fa-chevron-left"></i></button>
+                <button class="page-number active" data-page="1">1</button>
+                <button class="page-number" data-page="2">2</button>
+                <button id="nextPage"><i class="fas fa-chevron-right"></i></button>
             </div>
         </main>
 
@@ -1372,9 +1193,6 @@
 
     <footer>
         <div class="footer-content">
-            <div class="copyright">
-                © 2025 Mors Team. All rights reserved.
-            </div>
             <div class="social-buttons">
                 <button class="social-btn github" onclick="window.open('https://github.com/VenomousRhyme41/Mors-Team-Website', '_blank')">
                     <i class="fab fa-github"></i>
@@ -1386,16 +1204,34 @@
                     <i class="fab fa-youtube"></i>
                 </button>
             </div>
+            <div class="footer-links">
+                <a href="/terms" class="underlined">Terms of Service</a>
+                <a href="/privacy" class="underlined">Privacy Policy</a>
+                <a href="/site-map" class="underlined">Sitemap</a>
+                <a href="/about" class="underlined">About Us</a>
+                <a href="/contact" class="underlined">Contact</a>
+            </div>
+            <div class="copyright">
+                By accessing our service, you automatically agree to our <a href="/terms" class="underlined">Terms of Service</a> and <a href="/privacy" class="underlined">Privacy Policy</a>
+            </div>
+            <div class="copyright">
+                © 2025 Mors Team. All rights reserved.
+            </div>
         </div>
     </footer>
+
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
     <div class="modal" id="modal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModal()">&times;</button>
-            <h2 style="text-align: center; margin-bottom: 20px; color: var(--accent);">Mod Details</h2>
-            <div style="text-align: center; padding: 40px 20px; color: var(--text-color); opacity: 0.8;">
+            <h2 style="text-align: center; margin-bottom: 20px; color: var(--accent);" id="modalTitle">Mod Details</h2>
+            <div id="modalContent" style="text-align: center; padding: 40px 20px; color: var(--text-color); opacity: 0.8;">
                 <i class="fas fa-cogs" style="font-size: 48px; margin-bottom: 20px; color: var(--accent);"></i>
                 <p style="font-size: 18px; line-height: 1.6;">Detailed information about this mod will be available soon.</p>
+                <input type="range" min="1" max="8" value="1" class="modal-slider" style="margin-top: 20px;">
             </div>
         </div>
     </div>
@@ -1416,6 +1252,13 @@
         const filtersSection = document.getElementById('filtersSection');
         const rightSidebar = document.getElementById('rightSidebar');
         const filterBtns = document.querySelectorAll('.filter-btn');
+        const pagination = document.getElementById('pagination');
+        const prevPageBtn = document.getElementById('prevPage');
+        const nextPageBtn = document.getElementById('nextPage');
+        let pageNumbers = document.querySelectorAll('.page-number');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+        const backToTop = document.getElementById('backToTop');
         
         let mobileMenuOpen = false;
         let currentFilters = {
@@ -1423,6 +1266,164 @@
             price: 'all',
             version: 'all'
         };
+        
+        let currentPage = 1;
+        const cardsPerPage = 9;
+        let allCards = [];
+        let filteredCards = [];
+        
+        const modsData = [
+            {
+                id: 'horion',
+                name: 'Horion',
+                level: 8,
+                platform: 'windows',
+                price: 'free',
+                popular: 10,
+                version: '1.20.100',
+                verified: true,
+                description: 'Powerful Minecraft utility mod client',
+                pros: ['Most Popular Client', 'Lots of Configs', 'Frequent updates'],
+                cons: ['Antivirus False Positives', 'Anticheat detection'],
+                website: 'https://horion.download/',
+                discord: 'https://discord.gg/horion'
+            },
+            {
+                id: 'mod2',
+                name: 'Mod 2',
+                level: 5,
+                platform: 'windows',
+                price: 'paid',
+                popular: 7,
+                version: '1.20.80',
+                verified: false,
+                description: 'Advanced building tools mod',
+                pros: ['Easy to install', 'Great performance'],
+                cons: ['Can be buggy', 'Limited compatibility', 'Steep learning curve'],
+                website: 'https://example.com',
+                discord: 'https://discord.gg/example'
+            },
+            {
+                id: 'mod3',
+                name: 'Mod 3',
+                level: 8,
+                platform: 'ios',
+                price: 'free',
+                popular: 6,
+                version: '1.20.100',
+                verified: true,
+                description: 'Texture optimization mod pack',
+                pros: ['Easy to install', 'Great performance', 'Regular updates'],
+                cons: ['Can be buggy'],
+                website: 'https://example.com',
+                discord: 'https://discord.gg/example'
+            },
+            {
+                id: 'mod4',
+                name: 'Mod 4',
+                level: 3,
+                platform: 'android',
+                price: 'free',
+                popular: 5,
+                version: '1.20.80',
+                verified: false,
+                description: 'Simple quality of life improvements',
+                pros: ['Easy to install', 'Great performance'],
+                cons: ['Can be buggy', 'Limited compatibility', 'Limited compatibility'],
+                website: 'https://example.com',
+                discord: 'https://discord.gg/example'
+            },
+            {
+                id: 'mod5',
+                name: 'Mod 5',
+                level: 7,
+                platform: 'windows',
+                price: 'paid',
+                popular: 4,
+                version: '1.20.100',
+                verified: true,
+                description: 'Advanced combat mechanics mod',
+                pros: ['Easy to install', 'Limited compatibility'],
+                cons: ['Can be buggy', 'Limited compatibility', 'Limited compatibility'],
+                website: 'https://example.com',
+                discord: 'https://discord.gg/example'
+            },
+            {
+                id: 'mod6',
+                name: 'Mod 6',
+                level: 8,
+                platform: 'ios',
+                price: 'free',
+                popular: 3,
+                version: '1.20.100',
+                verified: true,
+                description: 'World generation enhancement mod',
+                pros: ['Easy to install', 'Limited compatibility'],
+                cons: ['Can be buggy', 'Limited compatibility', 'Steep learning curve'],
+                website: 'https://example.com',
+                discord: 'https://discord.gg/example'
+            },
+            {
+                id: 'mod7',
+                name: 'Mod 7',
+                level: 4,
+                platform: 'windows',
+                price: 'free',
+                popular: 2,
+                version: '1.20.80',
+                verified: false,
+                description: 'Performance optimization mod',
+                pros: ['Easy to install', 'Great performance', 'Regular updates'],
+                cons: ['Can be buggy', 'Limited compatibility'],
+                website: 'https://example.com',
+                discord: 'https://discord.gg/example'
+            },
+            {
+                id: 'mod8',
+                name: 'Mod 8',
+                level: 6,
+                platform: 'android',
+                price: 'paid',
+                popular: 2,
+                version: '1.20.100',
+                verified: true,
+                description: 'Multiplayer enhancement mod',
+                pros: ['Easy to install', 'Great performance'],
+                cons: ['Can be buggy', 'Limited compatibility', 'Steep learning curve'],
+                website: 'https://example.com',
+                discord: 'https://discord.gg/example'
+            },
+            {
+                id: 'mod9',
+                name: 'Mod 9',
+                level: 2,
+                platform: 'ios',
+                price: 'free',
+                popular: 2,
+                version: '1.20.80',
+                verified: true,
+                description: 'UI customization mod',
+                pros: ['Easy to install', 'Great performance', 'Regular updates'],
+                cons: ['Can be buggy', 'Limited compatibility'],
+                website: 'https://example.com',
+                discord: 'https://discord.gg/example'
+            },
+            {
+                id: 'mod10',
+                name: 'Mod 10',
+                level: 5,
+                platform: 'windows',
+                price: 'free',
+                popular: 1,
+                version: '1.20.100',
+                verified: true,
+                description: 'New mod for page 2',
+                pros: ['Brand new features', 'Excellent performance'],
+                cons: ['Still in development', 'Limited documentation'],
+                website: 'https://example.com',
+                discord: 'https://discord.gg/example'
+            }
+        ];
         
         document.addEventListener('DOMContentLoaded', function() {
             document.body.addEventListener('copy', function(e) {
@@ -1445,16 +1446,179 @@
                 });
             });
             
-            equalizeCardHeights();
-            filterCards();
+            initializeCards();
+            updateVersionDropdown();
+            renderCards();
+            updatePagination();
+            
+            window.addEventListener('scroll', toggleBackToTop);
+            backToTop.addEventListener('click', scrollToTop);
         });
         
-        function openModal(modName) {
+        function initializeCards() {
+            allCards = modsData;
+            filteredCards = [...allCards];
+        }
+        
+        function updateVersionDropdown() {
+            const versionSelect = document.getElementById('versionSelect');
+            const versions = new Set();
+            
+            allCards.forEach(mod => {
+                versions.add(mod.version);
+            });
+            
+            const sortedVersions = Array.from(versions).sort((a, b) => b.localeCompare(a));
+            
+            versionSelect.innerHTML = '<option value="all">All Versions</option>';
+            
+            sortedVersions.forEach(version => {
+                const option = document.createElement('option');
+                option.value = version;
+                option.textContent = version;
+                versionSelect.appendChild(option);
+            });
+        }
+        
+        function renderCards() {
+            cardsContainer.innerHTML = '';
+            
+            const startIndex = (currentPage - 1) * cardsPerPage;
+            const endIndex = startIndex + cardsPerPage;
+            const cardsToShow = filteredCards.slice(startIndex, endIndex);
+            
+            let currentRow = document.createElement('div');
+            currentRow.className = 'card-row';
+            
+            cardsToShow.forEach((mod, index) => {
+                if (index % 3 === 0 && index !== 0) {
+                    cardsContainer.appendChild(currentRow);
+                    currentRow = document.createElement('div');
+                    currentRow.className = 'card-row';
+                }
+                
+                const card = createCard(mod);
+                currentRow.appendChild(card);
+            });
+            
+            if (currentRow.children.length > 0) {
+                cardsContainer.appendChild(currentRow);
+            }
+            
+            setTimeout(equalizeCardHeights, 10);
+        }
+        
+        function createCard(mod) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.setAttribute('data-name', mod.id);
+            card.setAttribute('data-level', mod.level);
+            card.setAttribute('data-platform', mod.platform);
+            card.setAttribute('data-price', mod.price);
+            card.setAttribute('data-popular', mod.popular);
+            card.setAttribute('data-version', mod.version);
+            
+            card.innerHTML = `
+                <div class="neon-strip"></div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="mod-name">${mod.name}</div>
+                        <div class="tags">
+                            <div class="tag ${mod.verified ? 'verified' : 'unverified'}">
+                                <i class="fas fa-${mod.verified ? 'check' : 'times'}"></i> ${mod.verified ? 'Verified' : 'Unverified'}
+                            </div>
+                            <div class="tag version">${mod.version}</div>
+                        </div>
+                    </div>
+                    <div class="description">${mod.description}</div>
+                    <div class="level">Level ${mod.level} | Last edited by morsteam</div>
+                    <div class="pros-cons">
+                        <div class="pros">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Pros</span>
+                        </div>
+                        <ul class="bullet-points">
+                            ${mod.pros.map(pro => `<li>${pro}</li>`).join('')}
+                        </ul>
+                        <div class="cons">
+                            <i class="fas fa-minus-circle"></i>
+                            <span>Cons</span>
+                        </div>
+                        <ul class="bullet-points">
+                            ${mod.cons.map(con => `<li>${con}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="card-footer">
+                        <button class="website-btn" onclick="window.open('${mod.website}', '_blank')">Visit Website</button>
+                        <div class="button-row">
+                            <button class="discord-btn" onclick="window.open('${mod.discord}', '_blank')"><i class="fab fa-discord"></i> Discord</button>
+                            <button class="more-btn" onclick="openModal('${mod.id}')">More</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+        
+        function openModal(modId) {
+            const mod = allCards.find(m => m.id === modId);
+            if (mod) {
+                modalTitle.textContent = `${mod.name} Details`;
+                modalContent.innerHTML = `
+                    <div style="text-align: left;">
+                        <h3 style="color: var(--accent); margin-bottom: 15px;">About ${mod.name}</h3>
+                        <p style="margin-bottom: 20px; font-size: 16px; line-height: 1.6;">${mod.description}</p>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                            <div>
+                                <h4 style="color: var(--pros); margin-bottom: 10px;"><i class="fas fa-plus-circle"></i> Pros</h4>
+                                <ul style="padding-left: 20px;">
+                                    ${mod.pros.map(pro => `<li style="margin-bottom: 5px;">${pro}</li>`).join('')}
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--cons); margin-bottom: 10px;"><i class="fas fa-minus-circle"></i> Cons</h4>
+                                <ul style="padding-left: 20px;">
+                                    ${mod.cons.map(con => `<li style="margin-bottom: 5px;">${con}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="background: var(--bg-color); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                            <h4 style="margin-bottom: 10px;">Mod Information</h4>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <div><strong>Level:</strong> ${mod.level}</div>
+                                <div><strong>Platform:</strong> ${mod.platform}</div>
+                                <div><strong>Price:</strong> ${mod.price === 'free' ? 'Free' : 'Paid'}</div>
+                                <div><strong>Version:</strong> ${mod.version}</div>
+                            </div>
+                        </div>
+                        <input type="range" min="1" max="8" value="${mod.level}" class="modal-slider" style="margin-top: 20px;">
+                    </div>
+                `;
+            }
             modal.style.display = 'flex';
         }
 
         function closeModal() {
             modal.style.display = 'none';
+        }
+
+        function toggleBackToTop() {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
 
         themeToggle.addEventListener('click', toggleTheme);
@@ -1487,21 +1651,33 @@
         });
 
         levelSlider.addEventListener('input', filterCards);
-        sortSelect.addEventListener('change', sortCards);
+        sortSelect.addEventListener('change', filterCards);
         versionSelect.addEventListener('change', filterCards);
         searchInput.addEventListener('input', filterCards);
         mobileSearchInput.addEventListener('input', filterCards);
+        
+        prevPageBtn.addEventListener('click', goToPrevPage);
+        nextPageBtn.addEventListener('click', goToNextPage);
+        
+        pageNumbers.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const page = parseInt(this.getAttribute('data-page'));
+                goToPage(page);
+            });
+        });
 
         function equalizeCardHeights() {
             const rows = document.querySelectorAll('.card-row');
             rows.forEach(row => {
                 const cards = Array.from(row.children);
                 let maxHeight = 0;
+                
                 cards.forEach(card => {
                     card.style.height = 'auto';
                     const height = card.offsetHeight;
                     if (height > maxHeight) maxHeight = height;
                 });
+                
                 cards.forEach(card => {
                     card.style.height = maxHeight + 'px';
                 });
@@ -1512,62 +1688,80 @@
             const level = parseInt(levelSlider.value);
             const searchTerm = searchInput.value.toLowerCase() || mobileSearchInput.value.toLowerCase();
             const selectedVersion = versionSelect.value;
-            const cards = document.querySelectorAll('.card');
+            const sortBy = sortSelect.value;
             
-            cards.forEach(card => {
-                const cardLevel = parseInt(card.getAttribute('data-level'));
-                const cardName = card.getAttribute('data-name').toLowerCase();
-                const cardPlatform = card.getAttribute('data-platform');
-                const cardPrice = card.getAttribute('data-price');
-                const cardVersion = card.getAttribute('data-version');
+            filteredCards = allCards.filter(mod => {
+                const matchesLevel = mod.level >= level;
+                const matchesSearch = mod.name.toLowerCase().includes(searchTerm) || 
+                                    mod.description.toLowerCase().includes(searchTerm);
+                const matchesPlatform = currentFilters.platform === 'all' || mod.platform === currentFilters.platform;
+                const matchesPrice = currentFilters.price === 'all' || mod.price === currentFilters.price;
+                const matchesVersion = selectedVersion === 'all' || mod.version === selectedVersion;
                 
-                let shouldShow = cardLevel >= level && cardName.includes(searchTerm);
-                
-                if (currentFilters.platform !== 'all') {
-                    shouldShow = shouldShow && cardPlatform === currentFilters.platform;
-                }
-                
-                if (currentFilters.price !== 'all') {
-                    shouldShow = shouldShow && cardPrice === currentFilters.price;
-                }
-                
-                if (selectedVersion !== 'all') {
-                    shouldShow = shouldShow && cardVersion === selectedVersion;
-                }
-                
-                card.style.display = shouldShow ? 'flex' : 'none';
+                return matchesLevel && matchesSearch && matchesPlatform && matchesPrice && matchesVersion;
             });
             
-            sortCards();
-            setTimeout(equalizeCardHeights, 10);
+            if (sortBy === 'name') {
+                filteredCards.sort((a, b) => a.name.localeCompare(b.name));
+            } else if (sortBy === 'level') {
+                filteredCards.sort((a, b) => b.level - a.level);
+            } else if (sortBy === 'popular') {
+                filteredCards.sort((a, b) => b.popular - a.popular);
+            }
+            
+            currentPage = 1;
+            renderCards();
+            updatePagination();
         }
 
-        function sortCards() {
-            const sortBy = sortSelect.value;
-            const cards = Array.from(document.querySelectorAll('.card'));
-            const container = document.getElementById('cardsContainer');
+        function goToPage(page) {
+            currentPage = page;
+            renderCards();
+            updatePagination();
+        }
+
+        function goToPrevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                renderCards();
+                updatePagination();
+            }
+        }
+
+        function goToNextPage() {
+            const totalPages = Math.ceil(filteredCards.length / cardsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderCards();
+                updatePagination();
+            }
+        }
+
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredCards.length / cardsPerPage);
             
-            cards.sort((a, b) => {
-                if (sortBy === 'name') {
-                    return a.getAttribute('data-name').localeCompare(b.getAttribute('data-name'));
-                } else if (sortBy === 'level') {
-                    return parseInt(b.getAttribute('data-level')) - parseInt(a.getAttribute('data-level'));
-                } else if (sortBy === 'popular') {
-                    const aPopular = parseInt(a.getAttribute('data-popular'));
-                    const bPopular = parseInt(b.getAttribute('data-popular'));
-                    return bPopular - aPopular;
-                } else {
-                    return Math.random() - 0.5;
-                }
+            prevPageBtn.disabled = currentPage === 1;
+            nextPageBtn.disabled = currentPage === totalPages;
+            
+            pageNumbers.forEach(btn => {
+                const page = parseInt(btn.getAttribute('data-page'));
+                btn.classList.toggle('active', page === currentPage);
+                btn.style.display = page <= totalPages ? 'block' : 'none';
             });
             
-            cards.forEach(card => {
-                if (card.style.display !== 'none') {
-                    container.appendChild(card);
-                }
-            });
-            
-            equalizeCardHeights();
+            while (pageNumbers.length < totalPages) {
+                const newPageBtn = document.createElement('button');
+                newPageBtn.className = 'page-number';
+                newPageBtn.setAttribute('data-page', pageNumbers.length + 1);
+                newPageBtn.textContent = pageNumbers.length + 1;
+                newPageBtn.addEventListener('click', function() {
+                    const page = parseInt(this.getAttribute('data-page'));
+                    goToPage(page);
+                });
+                
+                pagination.insertBefore(newPageBtn, nextPageBtn);
+                pageNumbers = document.querySelectorAll('.page-number');
+            }
         }
 
         window.addEventListener('click', (event) => {
